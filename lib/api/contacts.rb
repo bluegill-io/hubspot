@@ -12,14 +12,10 @@ module Api
     end
 
     def params
-      super
-    end
-
-    def opts
-      '&property=vid&property=firstname&property=lastname&'\
+      super({property: '&property=vid&property=firstname&property=lastname&'\
       ' property=email&property=phone&property=mobilephone&'\
       ' property=hubspot_owner_id&property=industry&'\
-      ' property=company&property=jobtitle&count=100'
+      ' property=company&property=jobtitle&count=100'})
     end
     
     def format_json
