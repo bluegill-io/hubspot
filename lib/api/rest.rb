@@ -2,7 +2,7 @@ module Api
   module Rest
     module_function
     
-    def read_and_parse(url, params = {}, opts = '')  
+    def read_and_parse(url, params = {}, opts = nil)
       uri = URI.parse(url)
       uri.query = URI.encode_www_form(params)
 
@@ -12,7 +12,7 @@ module Api
 
       # this helps atleast with the contacts url by appending the
       # string of multiple '&property='
-      uri.query += opts if !opts.empty?
+      uri.query += opts if !opts.nil?
       resp = Net::HTTP.get_response(uri)
       return parse_json(resp)
     rescue StandardError, JSON::ParserError => e

@@ -17,7 +17,7 @@ module Api
     end
 
     def retreive
-      options = opts ||= {}
+      options = self.respond_to?(:opts) ? self.opts : nil
       response = Api::Rest.read_and_parse(@url, params, options)
 
       records = hash_access.empty? ? response : response[hash_access]
