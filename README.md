@@ -1,6 +1,6 @@
 ## Local Setup
 
-touch .env && insert:
+create a file named .env at the root of this directory && insert:
 
 ```sh
 API_KEY= { your api key }
