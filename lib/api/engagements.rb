@@ -6,53 +6,53 @@
 module Api
  class Engagements < Base
 
-    def retreive
-      params = { hapikey: @key,
-        property: 'id;createdBy;createdAt;contactsIds;companyIds;dealsIds;body' }
-
-      response = Api::Rest.read_and_parse(@url, params)
-      response['results'].each do |engagement|
-        engagement_params = format_json(engagement)
-        new_engagement = ::Engagement.create(engagement_params)
-
-        save_company_join(new_engagement, engagement)
-        save_contact_join(new_engagement, engagement)
-        save_contact_join(new_engagement, engagement)
-      end
+    def hash_access
+      'results'
     end
     
-    private
+    def self.needs_joins?
+      true
+    end
 
-    def format_json(e)
+    def params
+      super({property: 'id;createdBy;createdAt;contactsIds;companyIds;dealsIds;body' })
+    end
+
+    def format_json
       {   
-        id: e["engagement"]["id"].to_i,
-        post_at: e["engagement"]["createdAt"],
-        body: e["metadata"]["body"],
-        owner_id: e["engagement"]["createdBy"].to_i
+        id: :"engagement.id",
+        post_at: :"engagement.createdAt",
+        body: :"metadata.body",
+        owner_id: :"engagement.createdBy"
       }
     end
-
-    def save_company_join(new_en, en)
-      if en["associations"] && en["associations"]["companyIds"]
-        en["associations"]["companyIds"].each do |id|
-          new_en.company_engagements.create(company_id: id)
-        end
-      end
+    
+    def process_joins(db_record, json_record)
+      save_company_join(db_record, json_record)
+      save_contact_join(db_record, json_record)
+      save_deal_join(db_record, json_record)
     end
 
+    private
+
     def save_company_join(new_en, en)
-      if en["associations"] && en["associations"]["contactIds"]
-        en["associations"]["contactIds"].each do |id|
-          new_en.engagement_contacts.create(contact_id: id)
-        end
+      return if en[:"associations.companyIds"].empty?
+      en[:"associations.companyIds"].each do |id|
+        new_en.company_engagements.create(company_id: id)
       end
     end
 
     def save_contact_join(new_en, en)
-      if en["associations"] && en["associations"]["dealIds"]
-        en["associations"]["dealIds"].each do |id|
-          new_en.engagement_deals.create(deal_id: id)
-        end
+      return if en[:"associations.contactIds"].empty?
+      en[:"associations.contactIds"].each do |id|
+        new_en.engagement_contacts.create(contact_id: id)
+      end
+    end
+
+    def save_deal_join(new_en, en)
+      return if en[:"associations.dealIds"].empty?
+      en[:"associations.dealIds"].each do |id|
+        new_en.engagement_deals.create(deal_id: id)
       end
     end
   end

@@ -6,28 +6,20 @@
 module Api
   class Companies < Base
 
-    def retreive
-      params = { 
-        hapikey: @key, 
-        property: 'companyId;name;company_type;phone;'
-      }
-
-      response = Api::Rest.read_and_parse(@url, params)
-
-      response['results'].each do |company|
-        company_params = format_json(company)
-        ::Company.create(company_params)
-      end
+    def hash_access
+      'results'
     end
 
-    private
+    def params
+      super({property: 'companyId;name;company_type;phone;'})
+    end
     
-    def format_json(co)
+    def format_json
       { 
-        id: co["companyId"].to_i,
-        name: co["properties"]["name"]["value"],
-        industry: co["properties"]["company_type"] ? co["properties"]["company_type"]["value"] : nil,
-        phone: co["properties"]["phone"] ? co["properties"]["phone"]["value"] : nil
+        id: :companyId, 
+        name: :'properties.name.value', 
+        industry: :'properties.company_type.value',
+        phone: :'properties.phone.value'
       }
     end
   end

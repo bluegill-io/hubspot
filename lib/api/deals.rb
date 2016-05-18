@@ -6,68 +6,66 @@
 module Api
   class Deals < Base
     
-    def retreive
-      params = { 
-        hapikey: @key,
-        property: 'dealId;dealname;dealstage;closedate;bid_type;'\
+    def self.needs_joins?
+      true
+    end
+
+    def hash_access
+      'results'
+    end
+
+    def params
+      super({property: 'dealId;dealname;dealstage;closedate;bid_type;'\
         ' amount;margin_bid;job_code;property_year;win_loss;description;'\
         ' closed_lost_reason;closed_lost_won_percentage;final_contract_amount;'\
         ' margin_close;project_start_date;project_end_date;rooms;floors;'\
-        ' project_manager;project_superintendent;associatedCompanyIds;associatedVids;'
+        ' project_manager;project_superintendent;associatedCompanyIds;associatedVids;'})
+    end
+    
+    def format_json
+      {
+        id: :dealId,
+        deal_name: :'properties.dealname.value',
+        close_date: :'properties.closedate.value',
+        deal_stage: :'properties.dealstage.value',
+        project_year: :'properties.property_year.value',
+        project_start_date: :'properties.project_start_date.value',
+        project_end_date: :'properties.project_end_date.value',
+        rooms: :'properties.rooms.value',
+        floors: :'properties.floors.value',
+        project_manager: :'properties.project_manager.value',
+        project_superintendent: :'properties.project_superintendent.value',
+        bid_type: :'properties.bid_type.value',
+        amount: :'properties.amount.value',
+        margin_bid: :'properties.margin_bid.value',
+        job_code: :'properties.job_code.value',
+        win_loss: :'properties.win_loss.value',
+        description: :'properties.description.value',
+        closed_lost_reason: :'properties.closed_lost_reason.value',
+        closed_lost_won_percentage: :'properties.closed_lost_won_percentage.value',
+        final_contract_amount: :'properties.final_contract_amount.value',
+        margin_close: :'properties.margin_close.value'
       }
-      
-      response = Api::Rest.read_and_parse(@url, params)
-      response['results'].each do |deal|
-        deal_params = format_json(deal)
-        new_deal = ::Deal.create(deal_params)
+    end
 
-        save_contact_join(new_deal, deal)
-        save_deal_join(new_deal, deal)
-      end
+    def process_joins(db_record, json_record)
+      save_contact_join(db_record, json_record)
+      save_deal_join(db_record, json_record)
     end
 
     private
 
-    def format_json(d)
-      p = d["properties"]
-      {
-        id: d["dealId"].to_i,
-        deal_name: p["dealname"] ? p['dealname']["value"] : nil,
-        close_date: p["closedate"] ? p["closedate"]["value"] : nil,
-        deal_stage: p["dealstage"] ? p["dealstage"]["value"] : nil,
-        project_year: p["property_year"] ? p["property_year"]["value"] : nil,
-        project_start_date: p["project_start_date"] ? p["project_start_date"]["value"] : nil,
-        project_end_date: p["project_end_date"] ? p["project_end_date"]["value"] : nil,
-        rooms: p["rooms"] ? p["rooms"]["value"] : nil,
-        floors: p["floors"] ? p["floors"]["value"] : nil,
-        project_manager: p["project_manager"] ? p["project_manager"]["value"] : nil,
-        project_superintendent: p["project_superintendent"] ? p["project_superintendent"]["value"] : nil,
-        bid_type: p["bid_type"] ? p["bid_type"]["value"] : nil,
-        amount: p["amount"] ? p["amount"]["value"] : nil,
-        margin_bid: p["margin_bid"] ? p["margin_bid"]["value"] : nil,
-        job_code: p["job_code"] ? p["job_code"]["value"] : nil,
-        win_loss: p["win_loss"] ? p["win_loss"]["value"] : nil,
-        description: p["description"] ? p["description"]["value"] : nil,
-        closed_lost_reason: p["closed_lost_reason"] ? p["closed_lost_reason"]["value"] : nil,
-        closed_lost_won_percentage: p["closed_lost_won_percentage"] ? p["closed_lost_won_percentage"]["value"] : nil,
-        final_contract_amount: p["final_contract_amount"] ? p["final_contract_amount"]["value"] : nil,
-        margin_close: p["fmargin_close"] ? p["fmargin_close"]["value"] : nil
-      }
-    end
-
     def save_deal_join(new_deal, json_deal)
-      if json_deal["associations"] && json_deal["associations"]["associatedCompanyIds"]
-        json_deal["associations"]["associatedCompanyIds"].each do |id|
-          new_deal.company_deals.create(company_id: id)
-        end
+      return if json_deal[:"associations.associatedCompanyIds"].empty?
+      json_deal[:"associations.associatedCompanyIds"].each do |id|
+        new_deal.company_deals.find_or_create_by(company_id: id)
       end
     end
 
     def save_contact_join(new_deal, json_deal)
-      if json_deal["associations"] && json_deal["associations"]["associatedVids"]
-        json_deal["associations"]["associatedVids"].each do |vid|
-          new_deal.deal_contacts.create(contact_id: vid)
-        end
+      return if json_deal[:"associations.associatedCompanyIds"].empty?
+      json_deal[:"associations.associatedCompanyIds"].each do |vid|
+        new_deal.deal_contacts.find_or_create_by(contact_id: vid)
       end
     end
   end

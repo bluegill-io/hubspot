@@ -6,24 +6,20 @@
 module Api
  class Owners < Base
 
-    def retreive
-      params = { hapikey: @key }
-      response = Api::Rest.read_and_parse(@url, params)
-
-      response.each do |owner|
-        owner_params = format_json(owner)
-        ::Owner.create(owner_params)
-      end
+    def hash_access
+      ''
     end
-
-    private
+  
+    def params
+      super
+    end
     
-    def format_json(owner)
+    def format_json
       { 
-        id: owner["ownerId"].to_i,
-        first: owner["firstName"],
-        last: owner["lastName"],
-        email: owner["email"]
+        id: :ownerId,
+        first: :firstName,
+        last: :lastName,
+        email: :email
       }
     end
   end
