@@ -36,4 +36,12 @@ $ rake -T
 ```
 
 
+Transfered the repo to dvmonroe, to fix your remote run: 
 
+```sh
+$ git remote remove origin  
+$ git remote add origin git@github.com:dvmonroe/hubspot.git
+
+```
+
+after that you should be good to pull as needed
