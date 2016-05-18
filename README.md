@@ -26,6 +26,8 @@ loading in irb:
 ```sh
 $ irb
 2.3.1 :001 > load 'config.rb'
+2.3.1 :002 > Contact.find(1201).engagements
+2.3.1 :003 > Engagement.find(81320089).contacts
 ```
 
 To see all possible rake commands
