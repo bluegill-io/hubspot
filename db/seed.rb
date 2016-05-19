@@ -1,4 +1,7 @@
 DealStage.create({uuid: "8b7a49c3-f7de-422d-8cc3-acc3b656f748", stage_name: "Project Mentioned"})
+DealStage.create({uuid: "8b7a49c3-f7de-422d-8cc3-acc3b656f748", stage_name: "Project Mentioned"})
+DealStage.create({uuid: "8b7a49c3-f7de-422d-8cc3-acc3b656f748", stage_name: "Project Mentioned"})
+DealStage.create({uuid: "8b7a49c3-f7de-422d-8cc3-acc3b656f748", stage_name: "Project Mentioned"})
 
 #If Value = "67fb3c7e-154b-43b9-b528-9a489084554b"  puts  "Progress Drawings Issued"
 #If Value = "629fa075-92b4-46af-b886-fa843aa4dc23"  puts  "Budget Submitted"
