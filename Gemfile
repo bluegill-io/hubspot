@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'activerecord'
 # uncomment if you need it on your local
-# gem 'certified'
+gem 'certified'
 gem 'dotenv'
 gem 'json'
 gem 'openssl'
