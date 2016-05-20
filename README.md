@@ -16,7 +16,7 @@ ENGAGEMENT_URL=https://api.hubapi.com/engagements/v1/engagements/recent/modified
 ```sh
 $ gem install bundler
 $ bundle install
-$ rake db:create && rake db:migrate
+$ rake db:create && rake db:migrate && rake db:seed
 $ ./bin/run
 ```
 

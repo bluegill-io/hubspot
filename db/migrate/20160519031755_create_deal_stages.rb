@@ -1,8 +1,9 @@
 class CreateDealStages < ActiveRecord::Migration
   def change
-    create_table :deal_stages do |t|
-      t.string :uuid
-      t.string :stage_name
+    enable_extension 'uuid-ossp'
+    
+    create_table :deal_stages, id: :uuid do |t|
+      t.string :human_readable
 
       t.timestamps null: false
     end

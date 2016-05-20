@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20160519031755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "companies", id: false, force: :cascade do |t|
     t.integer  "id",         null: false
@@ -75,18 +76,17 @@ ActiveRecord::Schema.define(version: 20160519031755) do
   add_index "deal_contacts", ["contact_id"], name: "index_deal_contacts_on_contact_id", using: :btree
   add_index "deal_contacts", ["deal_id"], name: "index_deal_contacts_on_deal_id", using: :btree
 
-  create_table "deal_stages", force: :cascade do |t|
-    t.string   "uuid"
-    t.string   "stage_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "deal_stages", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "human_readable"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "deals", id: false, force: :cascade do |t|
     t.integer  "id",                         null: false
+    t.uuid     "deal_stage_id"
     t.string   "deal_name"
     t.string   "close_date"
-    t.string   "deal_stage"
     t.string   "project_year"
     t.string   "project_start_date"
     t.string   "project_end_date"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20160519031755) do
     t.datetime "updated_at",                 null: false
   end
 
+  add_index "deals", ["deal_stage_id"], name: "index_deals_on_deal_stage_id", using: :btree
   add_index "deals", ["id"], name: "index_deals_on_id", unique: true, using: :btree
 
   create_table "engagement_contacts", force: :cascade do |t|

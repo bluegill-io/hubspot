@@ -27,7 +27,7 @@ module Api
         id: :dealId,
         deal_name: :'properties.dealname.value',
         close_date: :'properties.closedate.value',
-        deal_stage: :'properties.dealstage.value',
+        deal_stage_id: :'properties.dealstage.value',
         project_year: :'properties.property_year.value',
         project_start_date: :'properties.project_start_date.value',
         project_end_date: :'properties.project_end_date.value',

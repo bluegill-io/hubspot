@@ -2,10 +2,6 @@ class Engagement < ActiveRecord::Base
   self.primary_key = 'id'
   belongs_to :owner
     
-  ## need to fix with join tables
-  # belongs_to :company
-  # belongs_to :contact
-  # belongs_to :deal
   has_many :company_engagements
   has_many :companies, through: :company_engagements
   

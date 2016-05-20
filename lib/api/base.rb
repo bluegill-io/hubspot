@@ -61,7 +61,6 @@ module Api
         # where associated id's exist)
         elsif value.is_a?(Array) && !value.empty?
           new_object["#{key}".to_sym] = value
-
         # else just make it as it is
         else
           new_object[key.to_sym] = value
