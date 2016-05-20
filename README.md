@@ -22,7 +22,7 @@ $ ./bin/run
 
 ## To bebug or to access local db
 
-loading in irb: 
+loading in irb:
 ```sh
 $ irb
 2.3.1 :001 > load 'config.rb'
@@ -34,14 +34,3 @@ To see all possible rake commands
 ```sh
 $ rake -T
 ```
-
-
-Transfered the repo to dvmonroe, to fix your remote run: 
-
-```sh
-$ git remote remove origin  
-$ git remote add origin git@github.com:dvmonroe/hubspot.git
-
-```
-
-after that you should be good to pull as needed
