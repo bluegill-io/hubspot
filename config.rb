@@ -1,4 +1,4 @@
-# require 'certified'
+require 'certified'
 require 'pry'
 require 'dotenv'
 require 'net/http'
@@ -7,8 +7,6 @@ require 'json'
 require 'pg'
 require 'active_record'
 require 'yaml'
-
-require 'dotenv'
 Dotenv.load
 
 # API

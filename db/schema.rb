@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518061441) do
+ActiveRecord::Schema.define(version: 20160519031755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,13 @@ ActiveRecord::Schema.define(version: 20160518061441) do
 
   add_index "deal_contacts", ["contact_id"], name: "index_deal_contacts_on_contact_id", using: :btree
   add_index "deal_contacts", ["deal_id"], name: "index_deal_contacts_on_deal_id", using: :btree
+
+  create_table "deal_stages", force: :cascade do |t|
+    t.string   "uuid"
+    t.string   "stage_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "deals", id: false, force: :cascade do |t|
     t.integer  "id",                         null: false
