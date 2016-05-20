@@ -17,7 +17,13 @@ ENGAGEMENT_URL=https://api.hubapi.com/engagements/v1/engagements/recent/modified
 $ gem install bundler
 $ bundle install
 $ rake db:create && rake db:migrate && rake db:seed
-$ ./bin/run
+$ ruby ./bin/run.rb
+```
+
+## To drop db and set up again
+
+```sh
+$ rake db:drop && rake db:create && rake db:migrate && rake db:seed
 ```
 
 ## To bebug or to access local db
