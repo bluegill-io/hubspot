@@ -12,15 +12,22 @@ module Api
       false
     end
 
+    def check_offset(*)
+      false
+    end
+
     def params(child_p = {})
       { hapikey: @key }.merge(child_p)
     end
 
-    def retreive
+    def retreive(loop_params = {})
       options = self.respond_to?(:opts) ? self.opts : nil
-      response = Api::Rest.read_and_parse(@url, params, options)
 
-      records = hash_access.empty? ? response : response[hash_access]
+      # set api_params based on whether we're looping or not
+      api_params = loop_params.empty? ? params : loop_params
+      response = Api::Rest.read_and_parse(@url, api_params, options)
+
+      records = hash_access.empty? ? response : response[hash_access] 
       records.each do |record|
         formatted = flatten_hash(record)
         valid_params = build_hash(format_json, formatted)
@@ -28,6 +35,12 @@ module Api
         if self.class.needs_joins?
           self.process_joins(ar_record, formatted)
         end
+      end
+
+      # check response to see if we need to loop for offset
+      # currently being used for Deals and Contacts
+      if self.check_offset(response)
+        self.rerun(response)
       end
     end
     

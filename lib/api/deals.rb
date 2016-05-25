@@ -14,12 +14,26 @@ module Api
       'results'
     end
 
+    # results to true or false
+    def check_offset(response)
+      response['hasMore']
+    end
+
+    def rerun(response)
+      offset = response['offset']
+      rerun_params = self.params.merge({offset: offset.to_s})
+
+      puts "Deals Looping #{offset}"
+      self.retreive(rerun_params)
+    end
+
     def params
       super({property: 'dealId;dealname;dealstage;closedate;bid_type;'\
         ' amount;margin_bid;job_code;property_year;win_loss;description;'\
         ' closed_lost_reason;closed_lost_won_percentage;final_contract_amount;'\
         ' margin_close;project_start_date;project_end_date;rooms;floors;'\
-        ' project_manager;project_superintendent;associatedCompanyIds;associatedVids;'})
+        ' project_manager;project_superintendent;associatedCompanyIds;associatedVids;',
+        count: '250'})
     end
     
     def format_json

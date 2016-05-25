@@ -11,15 +11,26 @@ module Api
       'contacts'
     end
 
+    # results to true or false
+    def check_offset(response)
+      response['has-more']
+    end
+
+    def rerun(response)
+      puts "Contact Looping"
+      rerun_params = self.params.merge({vidOffset: response['vid-offset'].to_s})
+      self.retreive(rerun_params)
+    end
+
     def params
-      super
+      super({count: '100'})
     end
 
     def opts
       '&property=vid&property=firstname&property=lastname&'\
       'property=email&property=phone&property=mobilephone&'\
       'property=hubspot_owner_id&property=industry&'\
-      'property=company&property=jobtitle&count=100'
+      'property=company&property=jobtitle'
     end
     
     def format_json

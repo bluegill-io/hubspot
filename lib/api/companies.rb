@@ -10,8 +10,19 @@ module Api
       'results'
     end
 
+    # results to true or false
+    def check_offset(response)
+      response['hasMore']
+    end
+
+    def rerun(response)
+      puts "Companies Looping"
+      rerun_params = self.params.merge({offset: response['offset'].to_s})
+      self.retreive(rerun_params)
+    end
+
     def params
-      super({property: 'companyId;name;company_type;phone;'})
+      super({property: 'companyId;name;company_type;phone;', count: '100' })
     end
     
     def format_json

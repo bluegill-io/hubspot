@@ -14,8 +14,19 @@ module Api
       true
     end
 
+    # results to true or false
+    def check_offset(response)
+      response['hasMore']
+    end
+
+    def rerun(response)
+      puts "Engagements Looping"
+      rerun_params = self.params.merge({offset: response['offset'].to_s})
+      self.retreive(rerun_params)
+    end
+
     def params
-      super({property: 'id;createdBy;createdAt;contactsIds;companyIds;dealsIds;body' })
+      super({property: 'id;createdBy;createdAt;contactsIds;companyIds;dealsIds;body', count: '50'})
     end
 
     def format_json
