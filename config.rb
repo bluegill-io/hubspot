@@ -7,6 +7,8 @@ require 'json'
 require 'pg'
 require 'active_record'
 require 'yaml'
+require 'rake'
+require 'spreadsheet'
 Dotenv.load
 
 # API

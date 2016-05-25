@@ -77,8 +77,8 @@ module Api
     end
 
     def save_contact_join(new_deal, json_deal)
-      return if json_deal[:"associations.associatedCompanyIds"].empty?
-      json_deal[:"associations.associatedCompanyIds"].each do |vid|
+      return if json_deal[:"associations.associatedVids"].empty?
+      json_deal[:"associations.associatedVids"].each do |vid|
         new_deal.deal_contacts.find_or_create_by(contact_id: vid)
       end
     end
