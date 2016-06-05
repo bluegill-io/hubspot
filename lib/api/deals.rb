@@ -49,18 +49,12 @@ module Api
 
     private
 
-
     def additional_deal_params
       deal_params.each_with_object({}) { |k, deal| deal[k] = :"properties.#{k}.value" }
     end
 
     def deal_params
-      [ 
-        :project_year, :project_start_date, :project_end_date, :rooms, :floors,
-        :project_manager, :project_superintendent, :bid_type, :amount, :margin_bid,
-        :job_code, :win_loss, :description, :closed_lost_reason, :closed_lost_won_percentage,
-        :final_contract_amount, :margin_close
-      ]
+      Deal.column_names - %w(id deal_stage_id deal_name close_date updated_at created_at)
     end
 
     def save_deal_join(new_deal, json_deal)
