@@ -10,7 +10,6 @@ module Api
       'results'
     end
 
-    # results to true or false
     def check_offset(response)
       response['hasMore']
     end

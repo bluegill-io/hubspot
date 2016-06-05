@@ -11,7 +11,6 @@ module Api
       'contacts'
     end
 
-    # results to true or false
     def check_offset(response)
       response['has-more']
     end

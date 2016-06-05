@@ -8,14 +8,17 @@ module Api
       @key = ENV['API_KEY']
     end
 
+    # override on child class as needed
     def self.needs_joins?
       false
     end
 
+    # override on child class as needed
     def check_offset(*)
       false
     end
 
+    # override on child class as needed
     def params(child_p = {})
       { hapikey: @key }.merge(child_p)
     end
@@ -89,7 +92,5 @@ module Api
       model.slice! "Api"
       return model.singularize.constantize
     end
-
-
   end
 end
