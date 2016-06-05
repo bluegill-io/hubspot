@@ -53,30 +53,34 @@ module Api
       end
     end
 
-    # flattena a multidimensial hash that we're getting on 
-    # api response
+    # flatten a multidimensial hash that we're getting on 
     def flatten_hash(hash)
       hash.each_with_object({}) do |(key, value), new_object|
-        # first check if it's an object
+        # hash
         if value.is_a? Hash
-          flatten_hash(value).map do |h_key, h_value|
-            new_object["#{key}.#{h_key}".to_sym] = h_value
-          end
-        # then check if it's an array of hashes
+          reflatten(key, value, new_object)
+        # array of hashes
         elsif value.is_a?(Array) && value.first.is_a?(Hash)
-          value.each do |v|
-            flatten_hash(v).map do |h_key, h_value|
-              new_object["#{key}.#{h_key}".to_sym] = h_value
-            end
+          value.each do |val|
+            reflatten(key, val, new_object)
           end
-        # then check if it's just an array (these are the places
-        # where associated id's exist)
+        # array of ids - this is associated models
         elsif value.is_a?(Array) && !value.empty?
-          new_object["#{key}".to_sym] = value
-        # else just make it as it is
+          set_key_value(key, value, new_object)
+        # already flat
         else
-          new_object[key.to_sym] = value
+          set_key_value(key, value, new_object)
         end
+      end
+    end
+
+    def set_key_value(key, value, hash)
+      hash[key.to_sym] = value
+    end
+
+    def reflatten(key, value, hash)
+      flatten_hash(value).map do |h_key, h_value|
+        hash["#{key}.#{h_key}".to_sym] = h_value
       end
     end
 
