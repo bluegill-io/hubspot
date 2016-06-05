@@ -1,7 +1,7 @@
 ## Local Setup
 
 create a file named .env at the root of this directory & update key value pairs as .env.example
-
+Do the same under db/. Create a config.yml file that matches config.example.yml
 
 ## To Run
 ```sh
