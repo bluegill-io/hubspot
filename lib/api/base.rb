@@ -30,7 +30,7 @@ module Api
       records = hash_access.empty? ? response : response[hash_access] 
       records.each do |record|
         formatted = flatten_hash(record)
-        valid_params = build_hash(format_json, formatted)
+        valid_params = build_hash(format_params, formatted)
         ar_record = activerecord_model.find_or_create_by(valid_params)
         if self.class.needs_joins?
           self.process_joins(ar_record, formatted)

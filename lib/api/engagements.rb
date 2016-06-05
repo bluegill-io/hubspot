@@ -29,7 +29,7 @@ module Api
       super({property: 'id;createdBy;createdAt;contactsIds;companyIds;dealsIds;body', count: '50'})
     end
 
-    def format_json
+    def format_params
       {   
         id: :"engagement.id",
         post_at: :"engagement.createdAt",

@@ -14,7 +14,7 @@ module Api
       super
     end
     
-    def format_json
+    def format_params
       { 
         id: :ownerId,
         first: :firstName,

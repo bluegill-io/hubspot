@@ -33,7 +33,7 @@ module Api
       'property=company&property=jobtitle'
     end
     
-    def format_json
+    def format_params
       {
         id: :vid,
         first: :'properties.firstname.value',

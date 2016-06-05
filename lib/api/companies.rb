@@ -25,7 +25,7 @@ module Api
       super({property: 'companyId;name;company_type;phone;', count: '100' })
     end
     
-    def format_json
+    def format_params
       { 
         id: :companyId, 
         name: :'properties.name.value', 

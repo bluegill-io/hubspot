@@ -33,7 +33,7 @@ module Api
       super({property: properties, count: '250'})
     end
     
-    def format_json
+    def format_params
       {
         id: :dealId,
         deal_name: :'properties.dealname.value',
