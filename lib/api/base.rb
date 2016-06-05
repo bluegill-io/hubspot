@@ -65,7 +65,6 @@ module Api
         # then check if it's an array of hashes
         elsif value.is_a?(Array) && value.first.is_a?(Hash)
           value.each do |v|
-            # binding.pry
             flatten_hash(v).map do |h_key, h_value|
               new_object["#{key}.#{h_key}".to_sym] = h_value
             end

@@ -28,12 +28,9 @@ module Api
     end
 
     def params
-      super({property: 'dealId;dealname;dealstage;closedate;bid_type;'\
-        ' amount;margin_bid;job_code;property_year;win_loss;description;'\
-        ' closed_lost_reason;closed_lost_won_percentage;final_contract_amount;'\
-        ' margin_close;project_start_date;project_end_date;rooms;floors;'\
-        ' project_manager;project_superintendent;associatedCompanyIds;associatedVids;',
-        count: '250'})
+      properties = 'dealId;dealname;dealstage;closedate;'\
+                  'associatedCompanyIds;associatedVids;' + deal_params.join(';')
+      super({property: properties, count: '250'})
     end
     
     def format_json
@@ -42,24 +39,7 @@ module Api
         deal_name: :'properties.dealname.value',
         close_date: :'properties.closedate.value',
         deal_stage_id: :'properties.dealstage.value',
-        project_year: :'properties.property_year.value',
-        project_start_date: :'properties.project_start_date.value',
-        project_end_date: :'properties.project_end_date.value',
-        rooms: :'properties.rooms.value',
-        floors: :'properties.floors.value',
-        project_manager: :'properties.project_manager.value',
-        project_superintendent: :'properties.project_superintendent.value',
-        bid_type: :'properties.bid_type.value',
-        amount: :'properties.amount.value',
-        margin_bid: :'properties.margin_bid.value',
-        job_code: :'properties.job_code.value',
-        win_loss: :'properties.win_loss.value',
-        description: :'properties.description.value',
-        closed_lost_reason: :'properties.closed_lost_reason.value',
-        closed_lost_won_percentage: :'properties.closed_lost_won_percentage.value',
-        final_contract_amount: :'properties.final_contract_amount.value',
-        margin_close: :'properties.margin_close.value'
-      }
+      }.merge!(additional_deal_params)
     end
 
     def process_joins(db_record, json_record)
@@ -68,6 +48,22 @@ module Api
     end
 
     private
+
+
+    def additional_deal_params
+      deal_params.each_with_object({}) do |k, obj| 
+        obj[k] = :"properties.#{k}.value" 
+      end
+    end
+
+    def deal_params
+      [ 
+        :project_year, :project_start_date, :project_end_date, :rooms, :floors,
+        :project_manager, :project_superintendent, :bid_type, :amount, :margin_bid,
+        :job_code, :win_loss, :description, :closed_lost_reason, :closed_lost_won_percentage,
+        :final_contract_amount, :margin_close
+      ]
+    end
 
     def save_deal_join(new_deal, json_deal)
       return if json_deal[:"associations.associatedCompanyIds"].empty?
