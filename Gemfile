@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'activerecord'
-# uncomment if you need it on your local
-gem 'certified'
+gem 'capistrano'
+# need this for josh's windows machine
+# gem 'certified'
 gem 'dotenv'
 gem 'json'
 gem 'pg'
 gem 'pry'
-gem 'standalone_migrations'
 gem 'spreadsheet'
+gem 'standalone_migrations'
+

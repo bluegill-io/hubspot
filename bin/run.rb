@@ -12,17 +12,15 @@ rake['db:seed'].invoke()
 
 
 Api::Companies.new(ENV['COMPANY_URL']).retreive
-puts "Companies Done"
+puts 'Companies Done'
 Api::Contacts.new(ENV['CONTACT_URL']).retreive
-puts "Contacts Done"
+puts 'Contacts Done'
 Api::Deals.new(ENV['DEAL_URL']).retreive
-puts "Deals Done"
+puts 'Deals Done'
 Api::Engagements.new(ENV['ENGAGEMENT_URL']).retreive
-puts "Engagements Done"
+puts 'Engagements Done'
 Api::Owners.new(ENV['OWNER_URL']).retreive
-puts "Owners Done"
+puts 'Owners Done'
 
 # create a new excel chart with our newly acquired data
 Excel::Workbook.new
-
-

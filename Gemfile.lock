@@ -27,8 +27,17 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    airbrussh (1.0.2)
+      sshkit (>= 1.6.1, != 1.7.0)
     arel (6.0.3)
     builder (3.2.2)
+    capistrano (3.5.0)
+      airbrussh (>= 1.0.0)
+      capistrano-harrow
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
+    capistrano-harrow (0.5.1)
     certified (1.0.0)
     coderay (1.1.1)
     dotenv (2.1.1)
@@ -40,6 +49,9 @@ GEM
     method_source (0.8.2)
     mini_portile2 (2.0.0)
     minitest (5.9.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (3.1.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     nokogiri (1.6.7.2-x86-mingw32)
@@ -71,6 +83,9 @@ GEM
     slop (3.6.0)
     spreadsheet (1.1.2)
       ruby-ole (>= 1.0)
+    sshkit (1.10.0)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     standalone_migrations (4.0.2)
       activerecord (~> 4.2.0)
       railties (~> 4.2.0)
@@ -86,6 +101,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  capistrano
   certified
   dotenv
   json
