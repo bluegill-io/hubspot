@@ -51,9 +51,7 @@ module Api
 
 
     def additional_deal_params
-      deal_params.each_with_object({}) do |k, obj| 
-        obj[k] = :"properties.#{k}.value" 
-      end
+      deal_params.each_with_object({}) { |k, deal| deal[k] = :"properties.#{k}.value" }
     end
 
     def deal_params
