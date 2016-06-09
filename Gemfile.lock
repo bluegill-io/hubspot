@@ -38,7 +38,6 @@ GEM
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
     capistrano-harrow (0.5.1)
-    certified (1.0.0)
     coderay (1.1.1)
     dotenv (2.1.1)
     erubis (2.7.0)
@@ -102,7 +101,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   capistrano
-  certified
   dotenv
   json
   pg
