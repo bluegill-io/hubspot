@@ -17,7 +17,7 @@ module Api
     end
 
     def rerun(response)
-      puts 'Companies Looping'
+      puts '== Companies Looping =='
       rerun_params = params.merge(offset: response['offset'].to_s)
       retreive(rerun_params)
     end

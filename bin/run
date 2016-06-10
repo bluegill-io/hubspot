@@ -11,15 +11,15 @@ rake['db:migrate'].invoke
 rake['db:seed'].invoke
 
 Api::Companies.new.retreive
-puts 'Companies Done'
+puts '== Companies Done =='
 Api::Contacts.new.retreive
-puts 'Contacts Done'
+puts '== Contacts Done =='
 Api::Deals.new.retreive
-puts 'Deals Done'
+puts '== Deals Done =='
 Api::Engagements.new.retreive
-puts 'Engagements Done'
+puts '== Engagements Done =='
 Api::Owners.new.retreive
-puts 'Owners Done'
+puts '== Owners Done =='
 
 # create a new excel chart with our newly acquired data
 Excel::Workbook.new

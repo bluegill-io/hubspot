@@ -1,6 +1,4 @@
-#:nodoc
 module Api
-  #:nodoc
   module Rest
     module_function
 

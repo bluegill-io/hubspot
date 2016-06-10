@@ -6,7 +6,6 @@
 # passing through CRM integrations, or created via the API.
 
 module Api
-  #:nodoc
   class Owners < Base
     def initialize
       super ENV['OWNER_URL'], false, ''

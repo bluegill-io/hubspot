@@ -4,7 +4,7 @@
 ## Get all deals in a portal sorted by their last modified date. You can use the count or offset parameters to further refine you search.
 
 module Api
-  class Deals < Base    
+  class Deals < Base
     def initialize
       super ENV['DEAL_URL'], true
     end
@@ -18,7 +18,7 @@ module Api
       offset = response['offset']
       rerun_params = params.merge(offset: offset.to_s)
 
-      puts "Deals Looping #{offset}"
+      puts "== Deals Looping #{offset} =="
       retreive(rerun_params)
     end
 
