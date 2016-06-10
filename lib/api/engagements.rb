@@ -5,12 +5,8 @@
 
 module Api
   class Engagements < Base
-    def hash_access
-      'results'
-    end
-
-    def self.needs_joins?
-      true
+    def initialize
+      super ENV['ENGAGEMENT_URL'], true
     end
 
     # results to true or false

@@ -8,10 +8,10 @@
 
 module Api
   class Companies < Base
-    def hash_access
-      'results'
+    def initialize
+      super ENV['COMPANY_URL']
     end
-
+  
     def check_offset(response)
       response['hasMore']
     end

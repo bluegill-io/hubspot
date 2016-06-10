@@ -1,16 +1,12 @@
 module Api
   class Base
-    attr_accessor :url
-    attr_accessor :key
+    attr_accessor :url, :key, :needs_joins, :hash_access
 
-    def initialize(url)
+    def initialize(url, join = false, access = 'results')
       @url = url
       @key = ENV['API_KEY']
-    end
-
-    # override on child class as needed
-    def self.needs_joins?
-      false
+      @needs_joins = join
+      @hash_access = access
     end
 
     # override on child class as needed
@@ -35,7 +31,7 @@ module Api
         formatted = flatten_hash(record)
         valid_params = build_hash(format_params, formatted)
         ar_record = activerecord_model.find_or_create_by(valid_params)
-        process_joins(ar_record, formatted) if self.class.needs_joins?
+        process_joins(ar_record, formatted) if needs_joins
       end
 
       # check response to see if we need to loop for offset

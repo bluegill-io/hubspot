@@ -10,15 +10,15 @@ rake['db:create'].invoke
 rake['db:migrate'].invoke
 rake['db:seed'].invoke
 
-Api::Companies.new(ENV['COMPANY_URL']).retreive
+Api::Companies.new.retreive
 puts 'Companies Done'
-Api::Contacts.new(ENV['CONTACT_URL']).retreive
+Api::Contacts.new.retreive
 puts 'Contacts Done'
-Api::Deals.new(ENV['DEAL_URL']).retreive
+Api::Deals.new.retreive
 puts 'Deals Done'
-Api::Engagements.new(ENV['ENGAGEMENT_URL']).retreive
+Api::Engagements.new.retreive
 puts 'Engagements Done'
-Api::Owners.new(ENV['OWNER_URL']).retreive
+Api::Owners.new.retreive
 puts 'Owners Done'
 
 # create a new excel chart with our newly acquired data

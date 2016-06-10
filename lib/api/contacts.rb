@@ -6,8 +6,8 @@
 
 module Api
   class Contacts < Base
-    def hash_access
-      'contacts'
+    def initialize
+      super ENV['CONTACT_URL'], false, 'contacts'
     end
 
     def check_offset(response)

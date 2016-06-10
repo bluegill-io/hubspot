@@ -4,13 +4,9 @@
 ## Get all deals in a portal sorted by their last modified date. You can use the count or offset parameters to further refine you search.
 
 module Api
-  class Deals < Base
-    def self.needs_joins?
-      true
-    end
-
-    def hash_access
-      'results'
+  class Deals < Base    
+    def initialize
+      super ENV['DEAL_URL'], true
     end
 
     # results to true or false

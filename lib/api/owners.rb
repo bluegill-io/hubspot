@@ -8,8 +8,8 @@
 module Api
   #:nodoc
   class Owners < Base
-    def hash_access
-      ''
+    def initialize
+      super ENV['OWNER_URL'], false, ''
     end
 
     def params

@@ -4,3 +4,4 @@ config/database.yml
 boom.xls
 config/deploy/*
 log/*
+spec/.DS_Store
