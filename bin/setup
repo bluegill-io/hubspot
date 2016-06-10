@@ -1,13 +1,25 @@
 #!/bin/sh
 
 # Set up Ruby dependencies
-echo "Installing Bundler"
+echo "\n== Installing Bundler =="
 gem install bundler
 
-echo "Installing Gems"
+echo "\n== Installing Gems =="
 bundle install
 
+
+if [ ! -f .env ]; then
+  echo "\n== Creating .env file ==" 
+  cp .env.example .env
+  echo "\n== Please update .env with your env vars =="
+fi
+
+if [ ! -f ./config/database.yml ]; then
+  echo "\n== Creating database.yml file ==" 
+  cp ./config/database.example.yml ./config/database.yml
+fi
+
 # Set up database
-echo "Setting up database"
+echo "\n== Setting up database =="
 bundle exec rake db:create
 bundle exec rake db:migrate
