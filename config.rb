@@ -1,4 +1,4 @@
-require 'certified'
+# require 'certified'
 require 'pry'
 require 'dotenv'
 require 'net/http'

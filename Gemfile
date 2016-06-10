@@ -8,6 +8,8 @@ gem 'dotenv'
 gem 'json'
 gem 'pg'
 gem 'pry'
+gem 'rubocop', require: false
+gem 'rspec'
 gem 'spreadsheet'
 gem 'standalone_migrations'
 
