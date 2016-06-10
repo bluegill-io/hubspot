@@ -1,0 +1,16 @@
+language: ruby
+
+rvm:
+ - '2.3.1'
+
+before_script:
+  - bin/setup
+
+services:
+  - postgresql
+
+addons:
+  postgresql: "9.4"
+  
+script:
+  - bundle exec rspec spec/
