@@ -1,7 +1,9 @@
-## http://developers.hubspot.com/docs/methods/owners/get_owners
-## Require at least 35 records
-## GET /owners/v2/owners/
-## Returns all of the owners that exist inside of HubSpot. Owners can be created from users inside of the application, owners passing through CRM integrations, or created via the API.
+# http://developers.hubspot.com/docs/methods/owners/get_owners
+# Require at least 35 records
+# GET /owners/v2/owners/
+# Returns all of the owners that exist inside of HubSpot. Owners
+# can be created from users inside of the application, owners
+# passing through CRM integrations, or created via the API.
 
 module Api
   #:nodoc

@@ -3,8 +3,7 @@ AllCops:
     - 'Rakefile'
     - 'config.rb'
   Exclude:
-    - db/schema.rb
-    - db/seeds.rb
+    - db/**/**
     - Gemfile
     - Gemfile.lock
   DisplayCopNames: true

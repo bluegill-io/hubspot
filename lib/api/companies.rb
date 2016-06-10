@@ -1,7 +1,10 @@
-## http://developers.hubspot.com/docs/methods/companies/get_companies_modified
-## Require at least 200 records
-## GET /companies/v2/companies/recent/modified
-## Returns a list of all companies sorted by the date the companies were most recently modified. This is particularly useful for ongoing syncs with HubSpot in which changes to companies must be captured in another system.
+# http://developers.hubspot.com/docs/methods/companies/get_companies_modified
+# Require at least 200 records
+# GET /companies/v2/companies/recent/modified
+# Returns a list of all companies sorted by the date
+# the companies were most recently modified. This is particularly
+# useful for ongoing syncs with HubSpot in which changes to
+# companies must be captured in another system.
 
 module Api
   class Companies < Base
