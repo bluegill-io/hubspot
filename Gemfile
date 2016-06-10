@@ -4,11 +4,14 @@ gem 'activerecord'
 gem 'capistrano'
 # need this for josh's windows machine
 # gem 'certified'
+gem 'codeclimate-test-reporter', require: false
 gem 'dotenv'
 gem 'json'
 gem 'pg'
 gem 'pry'
 gem 'rubocop', require: false
 gem 'rspec'
+gem 'simplecov', require: false
 gem 'spreadsheet'
 gem 'standalone_migrations'
+
