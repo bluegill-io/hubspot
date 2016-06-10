@@ -65,5 +65,5 @@ module Api
         new_en.engagement_deals.create(deal_id: id)
       end
     end
-   end
+  end
 end

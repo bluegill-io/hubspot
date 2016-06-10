@@ -1,9 +1,0 @@
-inherit_from: .rubocop-todo.yml
-AllCops:
-  Include:
-    - Rakefile
-    - config.rb
-  Exclude:
-    - db/schema.rb
-    - Gemfile
-    - Gemfile.lock

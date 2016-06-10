@@ -1,0 +1,16 @@
+AllCops:
+  Include:
+    - 'Rakefile'
+    - 'config.rb'
+  Exclude:
+    - db/schema.rb
+    - db/seeds.rb
+    - Gemfile
+    - Gemfile.lock
+  DisplayCopNames: true
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 180
