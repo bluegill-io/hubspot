@@ -5,10 +5,11 @@ Do the same under db/. Create a config.yml file that matches config.example.yml
 
 ## To Run
 ```sh
-$ gem install bundler
-$ bundle install
-$ ruby ./bin/run.rb
+$ bin/setup
+$ bin/run
+# if you get a permission denied error on either cmd run chmod +x  bin/setup || chmod +x bin/run
 ```
+
 
 ## To bebug or to access local db
 

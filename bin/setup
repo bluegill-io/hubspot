@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Set up Ruby dependencies
+echo "Installing Bundler"
+gem install bundler
+
+echo "Installing Gems"
+bundle install
+
+# Set up database
+echo "Setting up database"
+bundle exec rake db:create
+bundle exec rake db:migrate
