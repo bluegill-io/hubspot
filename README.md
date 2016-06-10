@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/dvmonroe/hubspot/badges/gpa.svg)](https://codeclimate.com/github/dvmonroe/hubspot)
+
 ## Run Locally
 ```sh
 $ bin/setup
