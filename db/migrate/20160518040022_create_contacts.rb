@@ -3,7 +3,7 @@ class CreateContacts < ActiveRecord::Migration
     create_table :contacts, id: false do |t|
       t.integer :id, null: false
       t.references :owner, index: true
-      
+
       t.string :first
       t.string :last
       t.string :email

@@ -4,12 +4,11 @@
 ## Get an engagement (a task or activity) on an object in HubSpot. This data is often used for per rep productivity reporting or integration with other back-office tools.
 
 module Api
- class Engagements < Base
-
+  class Engagements < Base
     def hash_access
       'results'
     end
-    
+
     def self.needs_joins?
       true
     end
@@ -20,24 +19,24 @@ module Api
     end
 
     def rerun(response)
-      puts "Engagements Looping"
-      rerun_params = self.params.merge({offset: response['offset'].to_s})
-      self.retreive(rerun_params)
+      puts 'Engagements Looping'
+      rerun_params = params.merge(offset: response['offset'].to_s)
+      retreive(rerun_params)
     end
 
     def params
-      super({property: 'id;createdBy;createdAt;contactsIds;companyIds;dealsIds;body', count: '50'})
+      super({ property: 'id;createdBy;createdAt;contactsIds;companyIds;dealsIds;body', count: '50' })
     end
 
     def format_params
-      {   
+      {
         id: :"engagement.id",
         post_at: :"engagement.createdAt",
         body: :"metadata.body",
         owner_id: :"engagement.createdBy"
       }
     end
-    
+
     def process_joins(db_record, json_record)
       save_company_join(db_record, json_record)
       save_contact_join(db_record, json_record)
@@ -66,6 +65,5 @@ module Api
         new_en.engagement_deals.create(deal_id: id)
       end
     end
-  end
+   end
 end
-

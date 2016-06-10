@@ -1,3 +1,4 @@
+#:nodoc
 class Owner < ActiveRecord::Base
   self.primary_key = 'id'
 

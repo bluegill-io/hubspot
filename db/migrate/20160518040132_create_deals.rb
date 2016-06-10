@@ -5,7 +5,7 @@ class CreateDeals < ActiveRecord::Migration
     create_table :deals, id: false do |t|
       t.integer :id, null: false
       t.references :deal_stage, type: :uuid, index: true
-      
+
       t.string :deal_name
       t.string :close_date
       t.string :project_year

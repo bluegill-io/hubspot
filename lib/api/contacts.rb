@@ -1,12 +1,11 @@
 ## http://developers.hubspot.com/docs/methods/contacts/get_contacts
 ## Require at least 200 records
 ## GET /contacts/v1/lists/all/contacts/all
-## For a given portal, return all contacts that have been created in the portal. 
+## For a given portal, return all contacts that have been created in the portal.
 ## A paginated list of contacts will be returned to you, with a maximum of 100 contacts per page.
 
 module Api
   class Contacts < Base
-
     def hash_access
       'contacts'
     end
@@ -16,13 +15,13 @@ module Api
     end
 
     def rerun(response)
-      puts "Contact Looping"
-      rerun_params = self.params.merge({vidOffset: response['vid-offset'].to_s})
-      self.retreive(rerun_params)
+      puts 'Contact Looping'
+      rerun_params = params.merge(vidOffset: response['vid-offset'].to_s)
+      retreive(rerun_params)
     end
 
     def params
-      super({count: '100'})
+      super({ count: '100' })
     end
 
     def opts
@@ -31,7 +30,7 @@ module Api
       'property=hubspot_owner_id&property=industry&'\
       'property=company&property=jobtitle'
     end
-    
+
     def format_params
       {
         id: :vid,

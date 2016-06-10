@@ -1,3 +1,4 @@
+#:nodoc
 class Deal < ActiveRecord::Base
   self.primary_key = 'id'
   belongs_to :deal_stage
@@ -10,5 +11,4 @@ class Deal < ActiveRecord::Base
 
   has_many :engagement_deals
   has_many :engagements, through: :engagement_deals
-
 end

@@ -12,4 +12,3 @@ gem 'rubocop', require: false
 gem 'rspec'
 gem 'spreadsheet'
 gem 'standalone_migrations'
-

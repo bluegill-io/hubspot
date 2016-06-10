@@ -5,11 +5,10 @@ rake = Rake.application
 rake.init
 rake.load_rakefile
 
-rake['db:drop'].invoke()
-rake['db:create'].invoke()
-rake['db:migrate'].invoke()
-rake['db:seed'].invoke()
-
+rake['db:drop'].invoke
+rake['db:create'].invoke
+rake['db:migrate'].invoke
+rake['db:seed'].invoke
 
 Api::Companies.new(ENV['COMPANY_URL']).retreive
 puts 'Companies Done'

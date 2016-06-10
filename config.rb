@@ -33,12 +33,10 @@ require './lib/models/engagement_contact.rb'
 require './lib/models/engagement_deal.rb'
 require './lib/models/owner.rb'
 
-# EXCEL TABLES 
+# EXCEL TABLES
 # (order is important here)
 require './lib/excel/workbook.rb'
 require './lib/excel/deals_table.rb'
-
-
 
 include ActiveRecord::Tasks
 

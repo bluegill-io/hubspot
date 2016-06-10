@@ -4,18 +4,18 @@
 ## Returns all of the owners that exist inside of HubSpot. Owners can be created from users inside of the application, owners passing through CRM integrations, or created via the API.
 
 module Api
- class Owners < Base
-
+  #:nodoc
+  class Owners < Base
     def hash_access
       ''
     end
-  
+
     def params
       super
     end
-    
+
     def format_params
-      { 
+      {
         id: :ownerId,
         first: :firstName,
         last: :lastName,

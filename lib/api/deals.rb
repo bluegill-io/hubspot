@@ -5,7 +5,6 @@
 
 module Api
   class Deals < Base
-    
     def self.needs_joins?
       true
     end
@@ -21,24 +20,24 @@ module Api
 
     def rerun(response)
       offset = response['offset']
-      rerun_params = self.params.merge({offset: offset.to_s})
+      rerun_params = params.merge(offset: offset.to_s)
 
       puts "Deals Looping #{offset}"
-      self.retreive(rerun_params)
+      retreive(rerun_params)
     end
 
     def params
       properties = 'dealId;dealname;dealstage;closedate;'\
                   'associatedCompanyIds;associatedVids;' + deal_params.join(';')
-      super({property: properties, count: '250'})
+      super({ property: properties, count: '250' })
     end
-    
+
     def format_params
       {
         id: :dealId,
         deal_name: :'properties.dealname.value',
         close_date: :'properties.closedate.value',
-        deal_stage_id: :'properties.dealstage.value',
+        deal_stage_id: :'properties.dealstage.value'
       }.merge!(additional_deal_params)
     end
 

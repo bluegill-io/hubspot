@@ -5,7 +5,6 @@
 
 module Api
   class Companies < Base
-
     def hash_access
       'results'
     end
@@ -15,19 +14,19 @@ module Api
     end
 
     def rerun(response)
-      puts "Companies Looping"
-      rerun_params = self.params.merge({offset: response['offset'].to_s})
-      self.retreive(rerun_params)
+      puts 'Companies Looping'
+      rerun_params = params.merge(offset: response['offset'].to_s)
+      retreive(rerun_params)
     end
 
     def params
-      super({property: 'companyId;name;company_type;phone;', count: '100' })
+      super({ property: 'companyId;name;company_type;phone;', count: '100' })
     end
-    
+
     def format_params
-      { 
-        id: :companyId, 
-        name: :'properties.name.value', 
+      {
+        id: :companyId,
+        name: :'properties.name.value',
         industry: :'properties.company_type.value',
         phone: :'properties.phone.value'
       }
