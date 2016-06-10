@@ -1,4 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/dvmonroe/hubspot/badges/gpa.svg)](https://codeclimate.com/github/dvmonroe/hubspot)
+[![Build Status](https://travis-ci.org/dvmonroe/hubspot.svg?branch=master)](https://travis-ci.org/dvmonroe/hubspot)
 
 ## Run Locally
 ```sh
