@@ -12,6 +12,8 @@ ratings:
   - lib/**
 exclude_paths:
 - Gemfile
+- Gemfile.lock
+- config/
 - Capfile
 - README.md
 - Rakefile
