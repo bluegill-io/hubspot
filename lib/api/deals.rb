@@ -55,14 +55,14 @@ module Api
     def save_deal_join(new_deal, json_deal)
       return if json_deal[:"associations.associatedCompanyIds"].empty?
       json_deal[:"associations.associatedCompanyIds"].each do |id|
-        new_deal.company_deals.find_or_create_by(company_id: id)
+        Deal.find(new_deal).company_deals.find_or_create_by(company_id: id)
       end
     end
 
     def save_contact_join(new_deal, json_deal)
       return if json_deal[:"associations.associatedVids"].empty?
       json_deal[:"associations.associatedVids"].each do |vid|
-        new_deal.deal_contacts.find_or_create_by(contact_id: vid)
+        Deal.find(new_deal).deal_contacts.find_or_create_by(contact_id: vid)
       end
     end
   end

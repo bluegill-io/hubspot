@@ -11,12 +11,13 @@ bundle install
 if [ ! -f .env ]; then
   echo "\n== Creating .env file ==" 
   cp .env.example .env
-  echo "\n== Please update .env with your env vars =="
+  echo "\n== Don't forget to edit your .env file ==" 
 fi
 
 if [ ! -f ./config/database.yml ]; then
   echo "\n== Creating database.yml file ==" 
   cp ./config/database.example.yml ./config/database.yml
+  echo "\n== Don't forget to edit your config/database.yml file ==" 
 fi
 
 # Set up database

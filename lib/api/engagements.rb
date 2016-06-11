@@ -5,7 +5,10 @@
 
 module Api
   class Engagements < Base
+    attr_accessor :join_hash
+    
     def initialize
+      @join_hash = join_hash
       super ENV['ENGAGEMENT_URL'], true
     end
 
@@ -33,33 +36,29 @@ module Api
       }
     end
 
-    def process_joins(db_record, json_record)
-      save_company_join(db_record, json_record)
-      save_contact_join(db_record, json_record)
-      save_deal_join(db_record, json_record)
+    def process_joins(id, json_obj)
+      join_hash.each do |k, v|
+        assoc_ids = json_obj[:"associations.#{v}"]
+        return if assoc_ids.nil? || assoc_ids.empty?
+        join_attr = v.to_s.underscore.singularize.to_sym
+        save_join_table(id, k, join_attr, assoc_ids) 
+      end
     end
 
     private
 
-    def save_company_join(new_en, en)
-      return if en[:"associations.companyIds"].empty?
-      en[:"associations.companyIds"].each do |id|
-        new_en.company_engagements.create(company_id: id)
+    def save_join_table(engage_id, assoc_table, join_attr, assoc_ids)
+      assoc_ids.each do |id| 
+        Engagement.find(engage_id).send(assoc_table).create join_attr => id
       end
     end
 
-    def save_contact_join(new_en, en)
-      return if en[:"associations.contactIds"].empty?
-      en[:"associations.contactIds"].each do |id|
-        new_en.engagement_contacts.create(contact_id: id)
-      end
-    end
-
-    def save_deal_join(new_en, en)
-      return if en[:"associations.dealIds"].empty?
-      en[:"associations.dealIds"].each do |id|
-        new_en.engagement_deals.create(deal_id: id)
-      end
+    def join_hash
+      {
+        company_engagements: :companyIds,
+        engagement_contacts: :contactsIds,
+        engagement_deals: :dealIds
+      }
     end
   end
 end
