@@ -19,3 +19,6 @@ end
 
 # create a new excel chart with our newly acquired data
 Excel::Workbook.new
+
+# send an email with our newly created workbook
+rake['email:send'].invoke

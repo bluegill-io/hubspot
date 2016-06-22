@@ -7,6 +7,7 @@ gem 'capistrano'
 gem 'codeclimate-test-reporter', require: false
 gem 'dotenv'
 gem 'json'
+gem 'mail'
 gem 'pg'
 gem 'pry'
 gem 'rubocop', require: false
@@ -14,4 +15,5 @@ gem 'rspec'
 gem 'simplecov', require: false
 gem 'spreadsheet'
 gem 'standalone_migrations'
+gem 'whenever', require: false
 
