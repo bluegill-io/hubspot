@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Set up Ruby dependencies
+Set up Ruby dependencies
 echo "\n== Installing Bundler =="
 gem install bundler
 
@@ -11,13 +11,30 @@ bundle install
 if [ ! -f .env ]; then
   echo "\n== Creating .env file ==" 
   cp .env.example .env
-  echo "\n== Don't forget to edit your .env file ==" 
+  echo "Enter your Hubspot Api Key and press [ENTER]: "
+  read api_key
+  echo "API_KEY=$api_key" | tee -a .env
+  echo "Enter the name of your db and press [ENTER]: "
+  read db
+  echo "DB=$db" | tee -a .env
+  echo "Enter your db username and press [ENTER]: "
+  read username
+  echo "DB_USERNAME=$username" | tee -a .env
+  echo "Enter your db password and press [ENTER]: "
+  read password
+  echo "DB_PASSWD=$password" | tee -a .env
+  echo "Enter your db host and press [ENTER]: "
+  read host
+  echo "DB_HOST=$host" | tee -a .env
+  echo "Enter your db port and press [ENTER]: "
+  read port
+  echo "DB_PORT=$port" | tee -a .env
+
 fi
 
 if [ ! -f ./config/database.yml ]; then
   echo "\n== Creating database.yml file ==" 
   cp ./config/database.example.yml ./config/database.yml
-  echo "\n== Don't forget to edit your config/database.yml file ==" 
 fi
 
 # Set up database
