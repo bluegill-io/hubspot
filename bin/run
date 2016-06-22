@@ -10,16 +10,12 @@ rake['db:create'].invoke
 rake['db:migrate'].invoke
 rake['db:seed'].invoke
 
-Api::Companies.new.retreive
-puts '== Companies Done =='
-Api::Contacts.new.retreive
-puts '== Contacts Done =='
-Api::Deals.new.retreive
-puts '== Deals Done =='
-Api::Engagements.new.retreive
-puts '== Engagements Done =='
-Api::Owners.new.retreive
-puts '== Owners Done =='
+# TODO update this to allow for passing of
+# options on run
+%w(Companies Contacts Deals Engagements Owners).each do |hub_data|
+  "Api::#{hub_data}".constantize.new.retreive
+  puts "== #{hub_data} Done =="
+end
 
 # create a new excel chart with our newly acquired data
 Excel::Workbook.new

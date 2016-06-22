@@ -37,9 +37,13 @@ module Api
       }.merge!(additional_deal_params)
     end
 
-    def process_joins(db_record, json_record)
-      save_contact_join(db_record, json_record)
-      save_deal_join(db_record, json_record)
+    def process_joins(id, json_obj)
+      join_hash.each_with_index do |k, i|
+        assoc_ids = json_obj[:"associations.#{k[1]}"]
+        return if assoc_ids.nil? || assoc_ids.empty?
+        join_attr = i == 0 ? :company_id : :contact_id
+        save_join_table(id, k[0], join_attr, assoc_ids) 
+      end
     end
 
     private
@@ -52,18 +56,17 @@ module Api
       Deal.column_names - %w(id deal_stage_id deal_name close_date updated_at created_at)
     end
 
-    def save_deal_join(new_deal, json_deal)
-      return if json_deal[:"associations.associatedCompanyIds"].empty?
-      json_deal[:"associations.associatedCompanyIds"].each do |id|
-        Deal.find(new_deal).company_deals.find_or_create_by(company_id: id)
+    def save_join_table(deal_id, assoc_table, join_attr, assoc_ids)
+      assoc_ids.each do |id| 
+        Deal.find(deal_id).send(assoc_table).create join_attr => id
       end
     end
 
-    def save_contact_join(new_deal, json_deal)
-      return if json_deal[:"associations.associatedVids"].empty?
-      json_deal[:"associations.associatedVids"].each do |vid|
-        Deal.find(new_deal).deal_contacts.find_or_create_by(contact_id: vid)
-      end
+    def join_hash
+      {
+        company_deals: :associatedCompanyIds,
+        deal_contacts: :associatedVids
+      }
     end
   end
 end

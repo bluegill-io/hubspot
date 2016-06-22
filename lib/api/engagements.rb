@@ -8,7 +8,6 @@ module Api
     attr_accessor :join_hash
     
     def initialize
-      @join_hash = join_hash
       super ENV['ENGAGEMENT_URL'], true
     end
 
