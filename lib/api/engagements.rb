@@ -6,7 +6,7 @@
 module Api
   class Engagements < Base
     attr_accessor :join_hash
-    
+
     def initialize
       super ENV['ENGAGEMENT_URL'], true
     end
@@ -40,14 +40,14 @@ module Api
         assoc_ids = json_obj[:"associations.#{v}"]
         return if assoc_ids.nil? || assoc_ids.empty?
         join_attr = v.to_s.underscore.singularize.to_sym
-        save_join_table(id, k, join_attr, assoc_ids) 
+        save_join_table(id, k, join_attr, assoc_ids)
       end
     end
 
     private
 
     def save_join_table(engage_id, assoc_table, join_attr, assoc_ids)
-      assoc_ids.each do |id| 
+      assoc_ids.each do |id|
         Engagement.find(engage_id).send(assoc_table).create join_attr => id
       end
     end

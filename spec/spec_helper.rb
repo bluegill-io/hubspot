@@ -4,9 +4,9 @@ SimpleCov.start do
   add_filter 'spec/'
   add_filter 'config/'
   formatter SimpleCov::Formatter::MultiFormatter.new([
-    SimpleCov::Formatter::HTMLFormatter,
-    CodeClimate::TestReporter::Formatter
-  ])
+                                                       SimpleCov::Formatter::HTMLFormatter,
+                                                       CodeClimate::TestReporter::Formatter
+                                                     ])
 end
 
 require_relative '../config.rb'

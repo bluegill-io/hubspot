@@ -10,7 +10,7 @@ rake['db:create'].invoke
 rake['db:migrate'].invoke
 rake['db:seed'].invoke
 
-# TODO update this to allow for passing of
+# TODO: update this to allow for passing of
 # options on run
 %w(Companies Contacts Deals Engagements Owners).each do |hub_data|
   "Api::#{hub_data}".constantize.new.retreive

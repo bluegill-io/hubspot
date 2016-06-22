@@ -42,7 +42,7 @@ module Api
         assoc_ids = json_obj[:"associations.#{k[1]}"]
         return if assoc_ids.nil? || assoc_ids.empty?
         join_attr = i == 0 ? :company_id : :contact_id
-        save_join_table(id, k[0], join_attr, assoc_ids) 
+        save_join_table(id, k[0], join_attr, assoc_ids)
       end
     end
 
@@ -57,7 +57,7 @@ module Api
     end
 
     def save_join_table(deal_id, assoc_table, join_attr, assoc_ids)
-      assoc_ids.each do |id| 
+      assoc_ids.each do |id|
         Deal.find(deal_id).send(assoc_table).create join_attr => id
       end
     end
