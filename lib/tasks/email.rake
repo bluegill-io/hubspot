@@ -3,22 +3,22 @@ require 'mail'
 namespace :email do
   desc "Send an email with our newly acquired data"
   task :send do
-    # options = { 
-    #   :address              => "smtp.gmail.com",
-    #   :port                 => 587,
-    #   :user_name            => '65monroe@gmail.com',
-    #   :password             => '<gmail password>',
-    #   :authentication       => 'plain',
-    #   :enable_starttls_auto => true  
-    # }
+    options = { 
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :user_name            => '',
+      :password             => '',
+      :authentication       => 'plain',
+      :enable_starttls_auto => true  
+    }
 
     Mail.defaults do
-      delivery_method :smtp, address: "localhost", port: 1025
+      delivery_method :smtp, options
     end
 
     Mail.deliver do
-      from     'mikel@test.lindsaar.net'
-      to       'you@test.lindsaar.net'
+      from     ''
+      to       ''
       subject  'This is a test email'
       body     'Here is our data'
       add_file 'boom.xls'
