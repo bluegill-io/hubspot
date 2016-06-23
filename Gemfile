@@ -5,7 +5,9 @@ gem 'capistrano'
 # need this for josh's windows machine
 # gem 'certified'
 gem 'codeclimate-test-reporter', require: false
+gem 'database_cleaner'
 gem 'dotenv'
+gem 'factory_girl'
 gem 'json'
 gem 'mail'
 gem 'pg'

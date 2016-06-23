@@ -38,9 +38,10 @@ module Api
     def process_joins(id, json_obj)
       join_hash.each do |k, v|
         assoc_ids = json_obj[:"associations.#{v}"]
-        return if assoc_ids.nil? || assoc_ids.empty?
-        join_attr = v.to_s.underscore.singularize.to_sym
-        save_join_table(id, k, join_attr, assoc_ids)
+        unless assoc_ids.nil? || assoc_ids.empty?
+          join_attr = v.to_s.underscore.singularize.to_sym
+          save_join_table(id, k, join_attr, assoc_ids)
+        end
       end
     end
 

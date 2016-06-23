@@ -3,6 +3,10 @@ default: &default
   encoding: unicode
   pool: 5
 
+test:
+  <<: *default
+  database: hubspot_test_db
+
 development:
   <<: *default
   database: <%= ENV["DB"] %>
