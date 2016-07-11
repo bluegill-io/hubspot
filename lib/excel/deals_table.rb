@@ -20,7 +20,7 @@ module Excel
     def update_content(deal, row)
       %w{ deal_name description job_code close_date project_year amount
         margin_bid final_contract_amount margin_close bid_type
-        win_loss closed_lost_reason closed_lost_won_percentage project_start_date
+        win_loss closed_lost_won_percentage closed_lost_reason project_start_date
         project_end_date deal_stage project_manager project_superintendent rooms floors
        }.each_with_index do |k, i|
         if k == "deal_stage"
