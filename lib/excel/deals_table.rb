@@ -29,26 +29,6 @@ module Excel
           sheet[row][i].change_contents(deal.send(k))
         end
       end
-      
-      # associations
-      sheet[row][20].change_contents(associated_companies(deal)) if deal.companies.present?
-      sheet[row][21].change_contents(associated_contacts(deal)) if deal.contacts.present?
-    end
-
-    def associated_companies(deal)
-      assoc_company_names = ''
-      deal.companies.each do |company|
-        assoc_company_names += "#{company.name}, "
-      end
-      assoc_company_names
-    end
-
-    def associated_contacts(deal)
-      assoc_contacts = ''
-      deal.contacts.each do |contact|
-        assoc_contacts += "#{[contact.first, contact.last].join(' ')}, "
-      end
-      assoc_contacts
     end
   end
 end
