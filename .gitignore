@@ -1,7 +1,7 @@
 .env
 config/database.yml
 !config/database.yml.example
-boom.xls
+report.xlsm
 config/deploy/*
 log/*
 

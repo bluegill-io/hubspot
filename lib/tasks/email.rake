@@ -21,7 +21,7 @@ namespace :email do
       to       ''
       subject  'This is a test email'
       body     'Here is our data'
-      add_file 'boom.xls'
+      add_file 'report.xlsm'
     end
 
     puts "[Rake Task][Email:Send] Completed"

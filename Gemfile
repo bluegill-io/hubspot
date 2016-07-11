@@ -15,7 +15,7 @@ gem 'pry'
 gem 'rubocop', require: false
 gem 'rspec'
 gem 'simplecov', require: false
-gem 'spreadsheet'
+gem 'rubyXL'
 gem 'standalone_migrations'
 gem 'whenever', require: false
 

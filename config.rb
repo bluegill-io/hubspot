@@ -8,7 +8,7 @@ require 'pg'
 require 'active_record'
 require 'yaml'
 require 'rake'
-require 'spreadsheet'
+require 'rubyXL'
 Dotenv.load
 
 # API
@@ -37,6 +37,7 @@ require './lib/models/owner.rb'
 # (order is important here)
 require './lib/excel/workbook.rb'
 require './lib/excel/deals_table.rb'
+require './lib/excel/contacts_table.rb'
 
 include ActiveRecord::Tasks
 

@@ -1,19 +1,15 @@
-#:nodoc
 module Excel
-  #:nodoc
   class Workbook
     def initialize
-      @excel_document = Spreadsheet::Workbook.new
-      DealsTable.new(@excel_document)
-      # add more writes here for our other records
-      # ContactsTable.new
+      @excel_book = RubyXL::Parser.parse './report.xlsm'
+      DealsTable.new(@excel_book) 
+      ContactsTable.new(@excel_book)
 
-      # last step after we've created all our sheets
       write_to_file
     end
 
     def write_to_file
-      @excel_document.write './boom.xls'
+      @excel_book.write './report.xlsm'
     end
   end
 end

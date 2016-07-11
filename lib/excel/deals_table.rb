@@ -1,46 +1,41 @@
-#:nodoc
+# TODO - remove dupe code between this and contacts_table
 module Excel
-  #:nodoc
   class DealsTable
     attr_accessor :sheet
 
     def initialize(excel_doc)
-      self.sheet = excel_doc.create_worksheet
-      sheet.name = 'Deals'
-
-      write_tables
+      self.sheet = excel_doc['--Deals--']
+      write_columns
     end
 
     private
 
-    def write_tables
-      sheet.row(0).concat %w(Name CloseDate Amount MarginBid
-                             BidType WinLoss DealStage
-                             LostWonPercentage ClosedLostReason
-                             Companies Contacts)
-      write_deal_columns
-    end
-
-    def write_deal_columns
+    def write_columns
       Deal.all.each_with_index do |deal, i|
-        index = i + 1
-        create_rows deal, index,
-                    associated_companies(deal),
-                    associated_contacts(deal)
+        row = i + 1
+        update_content deal, row
       end
     end
 
-    def create_rows(deal, index, assoc_comp, assoc_cont)
-      sheet.row(index).push deal.deal_name, deal.close_date,
-                            deal.amount, deal.margin_bid, deal.bid_type,
-                            deal.win_loss, deal.deal_stage.human_readable,
-                            deal.closed_lost_won_percentage,
-                            deal.closed_lost_reason,
-                            assoc_comp, assoc_cont
+    def update_content(deal, row)
+      %w{ deal_name description job_code close_date project_year amount
+        margin_bid final_contract_amount margin_close bid_type
+        win_loss closed_lost_reason closed_lost_won_percentage project_start_date
+        project_end_date deal_stage project_manager project_superintendent rooms floors
+       }.each_with_index do |k, i|
+        if k == "deal_stage"
+          sheet[row][i].change_contents(deal.send(k).human_readable)
+        else
+          sheet[row][i].change_contents(deal.send(k))
+        end
+      end
+      
+      # associations
+      sheet[row][20].change_contents(associated_companies(deal)) if deal.companies.present?
+      sheet[row][21].change_contents(associated_contacts(deal)) if deal.contacts.present?
     end
 
     def associated_companies(deal)
-      return unless deal.companies.present?
       assoc_company_names = ''
       deal.companies.each do |company|
         assoc_company_names += "#{company.name}, "
@@ -49,7 +44,6 @@ module Excel
     end
 
     def associated_contacts(deal)
-      return unless deal.contacts.present?
       assoc_contacts = ''
       deal.contacts.each do |contact|
         assoc_contacts += "#{[contact.first, contact.last].join(' ')}, "
