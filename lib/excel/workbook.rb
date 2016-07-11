@@ -1,7 +1,7 @@
 module Excel
   class Workbook
     def initialize
-      @excel_book = RubyXL::Parser.parse './report.xlsm'
+      @excel_book = RubyXL::Parser.parse './report.xlsx'
       DealsTable.new(@excel_book) 
       ContactsTable.new(@excel_book)
 
@@ -9,7 +9,7 @@ module Excel
     end
 
     def write_to_file
-      @excel_book.write './report.xlsm'
+      @excel_book.write './report.xlsx'
     end
   end
 end
