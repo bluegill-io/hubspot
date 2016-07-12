@@ -20,6 +20,9 @@ require './lib/api/engagements.rb'
 require './lib/api/owners.rb'
 require './lib/api/rest.rb'
 
+#CONCERNS
+require './lib/models/concerns/formattable_deal_data.rb'
+
 # MODELS
 require './lib/models/company.rb'
 require './lib/models/company_deal.rb'

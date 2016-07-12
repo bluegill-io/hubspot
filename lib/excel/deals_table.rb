@@ -19,22 +19,13 @@ module Excel
 
     def update_content(deal, row)
       %w{ deal_name description job_code formatted_close_date project_year amount
-        margin_bid final_contract_amount margin_close bid_type
-        win_loss closed_lost_won_percentage closed_lost_reason project_start_date
-        project_end_date deal_stage project_manager project_superintendent rooms floors
+        formatted_margin_bid final_contract_amount formatted_margin_close bid_type
+        win_loss closed_lost_won_percentage closed_lost_reason 
+        formatted_project_start_date formatted_project_end_date 
+        human_deal_stage project_manager project_superintendent 
+        formatted_rooms formatted_floors
        }.each_with_index do |k, i|
-        if k == "deal_stage"
-          sheet[row][i].change_contents(deal.send(k).human_readable)
-        # TODO optimize this without elsif
-        elsif k == 'margin_bid' || k == 'margin_close'
-          sheet[row][i].set_number_format('0.0000%')
-          sheet[row][i].change_contents(deal.send(k))
-        # TODO optimize this without elsif
-        elsif k == 'room' || k == 'floors'
-          sheet[row][i].change_contents(deal.send(k).to_i) if deal.send(k)
-        else
-          sheet[row][i].change_contents(deal.send(k))
-        end
+        sheet[row][i].change_contents(deal.send(k))
       end
     end
 

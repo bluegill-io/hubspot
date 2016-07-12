@@ -12,7 +12,6 @@ class Deal < ActiveRecord::Base
   has_many :engagement_deals
   has_many :engagements, through: :engagement_deals
 
-  def formatted_close_date
-    DateTime.strptime(close_date, '%Q').strftime("%m/%d/%Y") if close_date.present?
-  end
+  include FormattableDealData
+
 end
