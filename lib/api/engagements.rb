@@ -56,7 +56,7 @@ module Api
     def join_hash
       {
         company_engagements: :companyIds,
-        engagement_contacts: :contactsIds,
+        engagement_contacts: :contactIds,
         engagement_deals: :dealIds
       }
     end

@@ -33,7 +33,8 @@ module Api
         id: :dealId,
         deal_name: :'properties.dealname.value',
         close_date: :'properties.closedate.value',
-        deal_stage_id: :'properties.dealstage.value'
+        deal_stage_id: :'properties.dealstage.value',
+        project_year: :'properties.property_year.value'
       }.merge!(additional_deal_params)
     end
 
@@ -53,7 +54,7 @@ module Api
     end
 
     def deal_params
-      Deal.column_names - %w(id deal_stage_id deal_name close_date updated_at created_at)
+      Deal.column_names - %w(id deal_stage_id deal_name close_date project_year updated_at created_at)
     end
 
     def save_join_table(deal_id, assoc_table, join_attr, assoc_ids)
