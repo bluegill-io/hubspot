@@ -10,4 +10,8 @@ class Contact < ActiveRecord::Base
 
   has_many :engagement_contacts
   has_many :engagements, through: :engagement_contacts
+
+  def formatted_owner
+    owner.full_name if owner
+  end
 end

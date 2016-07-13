@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519031755) do
+ActiveRecord::Schema.define(version: 20160713224700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,45 @@ ActiveRecord::Schema.define(version: 20160519031755) do
 
   add_index "engagements", ["id"], name: "index_engagements_on_id", unique: true, using: :btree
   add_index "engagements", ["owner_id"], name: "index_engagements_on_owner_id", using: :btree
+
+  create_table "master_contacts", force: :cascade do |t|
+    t.string   "owner"
+    t.string   "first"
+    t.string   "last"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "m_phone"
+    t.string   "industry"
+    t.string   "company"
+    t.string   "job_title"
+    t.string   "engagements"
+    t.string   "deals"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "master_deals", force: :cascade do |t|
+    t.string "deal_stage"
+    t.string "deal_name"
+    t.string "close_date"
+    t.string "project_year"
+    t.string "project_start_date"
+    t.string "project_end_date"
+    t.string "rooms"
+    t.string "floors"
+    t.string "project_manager"
+    t.string "project_superintendent"
+    t.string "bid_type"
+    t.string "amount"
+    t.string "margin_bid"
+    t.string "job_code"
+    t.string "win_loss"
+    t.string "description"
+    t.string "closed_lost_reason"
+    t.string "closed_lost_won_percentage"
+    t.string "final_contract_amount"
+    t.string "margin_close"
+  end
 
   create_table "owners", id: false, force: :cascade do |t|
     t.integer  "id",         null: false

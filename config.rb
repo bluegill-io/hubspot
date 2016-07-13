@@ -34,13 +34,13 @@ require './lib/models/deal_stage.rb'
 require './lib/models/engagement.rb'
 require './lib/models/engagement_contact.rb'
 require './lib/models/engagement_deal.rb'
+require './lib/models/master_contact.rb'
+require './lib/models/master_deal.rb'
 require './lib/models/owner.rb'
 
-# EXCEL TABLES
-# (order is important here)
-require './lib/excel/workbook.rb'
-require './lib/excel/deals_table.rb'
-require './lib/excel/contacts_table.rb'
+# MASTER TABLES
+require './lib/master_table/contact_params.rb'
+require './lib/master_table/deal_params.rb'
 
 include ActiveRecord::Tasks
 

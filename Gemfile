@@ -9,13 +9,11 @@ gem 'database_cleaner'
 gem 'dotenv'
 gem 'factory_girl'
 gem 'json'
-gem 'mail'
 gem 'pg'
 gem 'pry'
 gem 'rubocop', require: false
 gem 'rspec'
 gem 'simplecov', require: false
-gem 'rubyXL'
 gem 'standalone_migrations'
 gem 'whenever', require: false
 

@@ -33,6 +33,14 @@ module FormattableDealData
     margin_close.to_f if margin_close
   end
 
+  def formatted_amount
+    amount.gsub!('$', '') if amount
+  end
+
+  def formatted_contract_amount
+    final_contract_amount.gsub!('$', '') if final_contract_amount
+  end
+
   private 
 
   def format_date(d)

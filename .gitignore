@@ -1,7 +1,6 @@
 .env
 config/database.yml
 !config/database.yml.example
-report.xlsx
 config/deploy/*
 log/*
 
