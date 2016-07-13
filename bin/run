@@ -28,7 +28,3 @@ Deal.all.each do |deal|
   params = MasterTable::DealParams.new(deal)
   MasterDeal.create(params.valid_params)
 end
-
-binding.pry
-
-Contact.all
