@@ -8,7 +8,6 @@ require 'pg'
 require 'active_record'
 require 'yaml'
 require 'rake'
-require 'rubyXL'
 Dotenv.load
 
 # API
