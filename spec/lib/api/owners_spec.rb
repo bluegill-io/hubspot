@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 RSpec.describe Api::Owners do
@@ -10,7 +11,7 @@ RSpec.describe Api::Owners do
   end
 
   describe '#params' do
-    it { expect(subject.params).to eq({ hapikey: 'test' }) }
+    it { expect(subject.params).to eq(hapikey: 'test') }
   end
 
   describe '#format_params' do

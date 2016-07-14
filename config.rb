@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # require 'certified'
 require 'pry'
 require 'dotenv'
@@ -19,7 +20,7 @@ require './lib/api/engagements.rb'
 require './lib/api/owners.rb'
 require './lib/api/rest.rb'
 
-#CONCERNS
+# CONCERNS
 require './lib/models/concerns/formattable_deal_data.rb'
 
 # MODELS

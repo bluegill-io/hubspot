@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # http://developers.hubspot.com/docs/methods/companies/get_companies_modified
 # Require at least 200 records
 # GET /companies/v2/companies/recent/modified

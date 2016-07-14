@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ## http://developers.hubspot.com/docs/methods/contacts/get_contacts
 ## Require at least 200 records
 ## GET /contacts/v1/lists/all/contacts/all

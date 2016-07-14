@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ## http://developers.hubspot.com/docs/methods/engagements/get_engagement
 ## Require at least 50 records per person
 ## GET /engagements/v1/engagements/:engagementId

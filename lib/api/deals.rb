@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ## http://developers.hubspot.com/docs/methods/deals/get_deals_modified
 ## Require at least 1000 records
 ## GET /deals/v1/deal/recent/modified

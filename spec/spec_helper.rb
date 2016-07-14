@@ -4,9 +4,9 @@ SimpleCov.start do
   add_filter 'spec/'
   add_filter 'config/'
   formatter SimpleCov::Formatter::MultiFormatter.new([
-    SimpleCov::Formatter::HTMLFormatter,
+                                                       SimpleCov::Formatter::HTMLFormatter,
     CodeClimate::TestReporter::Formatter
-  ])
+                                                     ])
 end
 ENV['ENV'] = 'test'
 ENV['API_KEY'] = 'test'
@@ -15,16 +15,15 @@ require 'factory_girl'
 require 'database_cleaner'
 
 ActiveRecord::Base.logger = nil
-ActiveRecord::Base.establish_connection({ adapter:  'postgresql',
+ActiveRecord::Base.establish_connection(adapter:  'postgresql',
                                           database: 'postgres',
                                           encoding: 'unicode',
-                                          pool:     5
-                                        })
+                                          pool:     5})
 
 ActiveRecord::Base.connection.drop_database 'hubspot_test_db'
 ActiveRecord::Base.connection.create_database 'hubspot_test_db'
 ActiveRecord::Schema.verbose = false
-load("db/schema.rb")
+load('db/schema.rb')
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 require './config'
 
 rake = Rake.application
@@ -16,9 +17,9 @@ rake['db:seed'].invoke
   "Api::#{hub_data}".constantize.new.retreive
   puts "== #{hub_data} Done =="
 end
-  
+
 # create new master tables for OBDC driver access
-# FOR JOSH 
+# FOR JOSH
 Contact.all.each do |contact|
   params = MasterTable::ContactParams.new(contact)
   MasterContact.create(params.valid_params)

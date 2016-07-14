@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 #:nodoc
 class Engagement < ActiveRecord::Base
   self.primary_key = 'id'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module MasterTable
   class ContactParams
     attr_accessor :contact
@@ -12,11 +13,11 @@ module MasterTable
 
     def set_params
       new_params = contact.as_json(except: [:id, :owner_id, :created_at, :updated_at])
-      new_params.merge!(owner: contact.formatted_owner)
+      new_params[:owner] = contact.formatted_owner
 
       # associations
-      new_params.merge!(engagements: associated_engagements) if contact.engagements.present?
-      new_params.merge!(deals: associated_deals) if contact.deals.present?
+      new_params[:engagements] = associated_engagements if contact.engagements.present?
+      new_params[:deals] = associated_deals if contact.deals.present?
       new_params
     end
 

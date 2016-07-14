@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Api
   class Base
     attr_accessor :url, :key, :needs_joins, :hash_access

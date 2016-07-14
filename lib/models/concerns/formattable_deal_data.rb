@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 module FormattableDealData
   extend ActiveSupport::Concern
-  
+
   def formatted_close_date
-    DateTime.strptime(close_date, '%Q').strftime("%m/%d/%Y") if close_date.present?
+    DateTime.strptime(close_date, '%Q').strftime('%m/%d/%Y') if close_date.present?
   end
 
   def formatted_project_start_date
@@ -34,19 +35,19 @@ module FormattableDealData
   end
 
   def formatted_amount
-    amount.gsub!('$', '') if amount
+    amount.delete!('$') if amount
     amount
   end
 
   def formatted_contract_amount
-    final_contract_amount.gsub!('$', '') if final_contract_amount
+    final_contract_amount.delete!('$') if final_contract_amount
     final_contract_amount
   end
 
-  private 
+  private
 
   def format_date(d)
-    date_format =  d.split('/').last.length == 4 ? '%m/%d/%Y' : '%m/%d/%y'
-    DateTime.strptime(d, date_format).strftime("%m/%d/%Y")
+    date_format = d.split('/').last.length == 4 ? '%m/%d/%Y' : '%m/%d/%y'
+    DateTime.strptime(d, date_format).strftime('%m/%d/%Y')
   end
 end

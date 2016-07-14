@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # http://developers.hubspot.com/docs/methods/owners/get_owners
 # Require at least 35 records
 # GET /owners/v2/owners/

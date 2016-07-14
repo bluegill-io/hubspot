@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 RSpec.describe Api::Engagements do
@@ -11,18 +12,18 @@ RSpec.describe Api::Engagements do
 
   describe '#check_offset' do
     context 'response has more records' do
-      let(:response) { OpenStruct.new({ 'hasMore': true }) }
+      let(:response) { OpenStruct.new('hasMore': true) }
       it { expect(subject.check_offset(response)).to eq true }
     end
 
     context 'response has no more records' do
-      let(:false_response) { OpenStruct.new({ 'hasMore': false }) }
+      let(:false_response) { OpenStruct.new('hasMore': false) }
       it { expect(subject.check_offset(false_response)).to eq false }
     end
   end
 
   describe '#params' do
-    it { expect(subject.params).to eq init_params }  
+    it { expect(subject.params).to eq init_params }
   end
 
   describe '#format_params' do
@@ -30,23 +31,23 @@ RSpec.describe Api::Engagements do
   end
 
   describe '#rerun' do
-    let(:resp) { OpenStruct.new({ 'offset': 51 }) }
-    
+    let(:resp) { OpenStruct.new('offset': 51) }
+
     it 'calls retreive with offset number from response' do
-      expect(subject).to receive(:retreive).with(init_params.merge({ offset: '51' }))
+      expect(subject).to receive(:retreive).with(init_params.merge(offset: '51'))
       subject.rerun(resp)
     end
   end
 
   describe '#process_joins' do
     let(:engagement) { create(:engagement) }
-    context "the association array is empty" do
+    context 'the association array is empty' do
       it 'does not save a new association record' do
         subject.process_joins(engagement.id, empty_association_json)
         expect(EngagementContact.count).to eq 0
       end
     end
-    
+
     context 'the association array is not empty' do
       it 'saves a new association record' do
         subject.process_joins(engagement.id, association_json)
@@ -57,23 +58,18 @@ RSpec.describe Api::Engagements do
   end
 
   def association_json
-    OpenStruct.new({
-      :"associations.companyIds" => [23432],
-      :"associations.dealIds" => [13434, 32434]
-    })
+    OpenStruct.new("associations.companyIds": [23_432],
+                   "associations.dealIds": [13_434, 32_434])
   end
 
   def empty_association_json
-    OpenStruct.new({
-      :"associations.contactsIds" => []
-    })
+    OpenStruct.new("associations.contactsIds": [])
   end
-  
+
   def init_params
-    { hapikey: "test", 
-      property: "id;createdBy;createdAt;contactsIds;companyIds;dealsIds;body", 
-      count: "50"
-    }
+    { hapikey: 'test',
+      property: 'id;createdBy;createdAt;contactsIds;companyIds;dealsIds;body',
+      count: '50' }
   end
 
   def engagement_params

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 #:nodoc
 class Deal < ActiveRecord::Base
   self.primary_key = 'id'
@@ -13,5 +14,4 @@ class Deal < ActiveRecord::Base
   has_many :engagements, through: :engagement_deals
 
   include FormattableDealData
-
 end

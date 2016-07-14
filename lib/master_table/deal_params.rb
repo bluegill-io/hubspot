@@ -1,4 +1,5 @@
-# TODO - remove dupe code between this and contacts_table
+# frozen_string_literal: true
+# TODO: - remove dupe code between this and contacts_table
 module MasterTable
   class DealParams
     attr_accessor :deal
@@ -13,7 +14,7 @@ module MasterTable
 
     def set_params
       new_params = deal.as_json(except: [:id, :deal_stage_id, :created_at, :updated_at])
-      new_params.merge!({
+      new_params.merge!(
         close_date: deal.formatted_close_date,
         margin_bid: deal.formatted_margin_bid,
         margin_close: deal.formatted_margin_close,
@@ -24,9 +25,8 @@ module MasterTable
         deal_stage: deal.human_deal_stage,
         amount: deal.formatted_amount,
         final_contract_amount: deal.formatted_contract_amount
-        })
+      )
       new_params
     end
-
   end
 end
