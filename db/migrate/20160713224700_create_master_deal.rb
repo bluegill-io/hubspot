@@ -12,14 +12,14 @@ class CreateMasterDeal < ActiveRecord::Migration
       t.string :project_manager
       t.string :project_superintendent
       t.string :bid_type
-      t.string :amount
+      t.float :amount
       t.string :margin_bid
       t.string :job_code
       t.string :win_loss
       t.string :description
       t.string :closed_lost_reason
       t.string :closed_lost_won_percentage
-      t.string :final_contract_amount
+      t.float :final_contract_amount
       t.string :margin_close
     end
   end

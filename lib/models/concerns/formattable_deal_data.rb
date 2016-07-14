@@ -36,12 +36,12 @@ module FormattableDealData
 
   def formatted_amount
     amount.delete!('$') if amount
-    amount
+    amount.to_f
   end
 
   def formatted_contract_amount
     final_contract_amount.delete!('$') if final_contract_amount
-    final_contract_amount
+    final_contract_amount.to_f
   end
 
   private
