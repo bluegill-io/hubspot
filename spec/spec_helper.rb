@@ -18,7 +18,7 @@ ActiveRecord::Base.logger = nil
 ActiveRecord::Base.establish_connection(adapter:  'postgresql',
                                           database: 'postgres',
                                           encoding: 'unicode',
-                                          pool:     5})
+                                          pool: 5)
 
 ActiveRecord::Base.connection.drop_database 'hubspot_test_db'
 ActiveRecord::Base.connection.create_database 'hubspot_test_db'
