@@ -35,10 +35,12 @@ module FormattableDealData
 
   def formatted_amount
     amount.gsub!('$', '') if amount
+    amount
   end
 
   def formatted_contract_amount
     final_contract_amount.gsub!('$', '') if final_contract_amount
+    final_contract_amount
   end
 
   private 
