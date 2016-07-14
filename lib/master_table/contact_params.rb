@@ -16,25 +16,17 @@ module MasterTable
       new_params[:owner] = contact.formatted_owner
 
       # associations
-      new_params[:engagements] = associated_engagements if contact.engagements.present?
-      new_params[:deals] = associated_deals if contact.deals.present?
+      new_params[:engagements] = associated(:engagements, :body) if contact.engagements.present?
+      new_params[:deals] = associated(:deals, :deal_name) if contact.deals.present?
       new_params
     end
 
-    def associated_deals
-      assoc_deals = ''
-      contact.deals.each do |deal|
-        assoc_deals += "#{deal.deal_name}, "
+    def associated(assoc, assoc_attr)
+      concatenated_assoc = ''
+      contact.send(assoc).each do |single_assoc|
+        concatenated_assoc += "#{single_assoc.send(assoc_attr)}, "
       end
-      assoc_deals.strip
-    end
-
-    def associated_engagements
-      assoc_engagements = ''
-      contact.engagements.each do |engage|
-        assoc_engagements += "#{engage.body}, "
-      end
-      assoc_engagements.strip
+      concatenated_assoc
     end
   end
 end
