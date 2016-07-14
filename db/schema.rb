@@ -172,14 +172,14 @@ ActiveRecord::Schema.define(version: 20160713224700) do
     t.string "project_superintendent"
     t.string "bid_type"
     t.float  "amount"
-    t.string "margin_bid"
+    t.float  "margin_bid"
     t.string "job_code"
     t.string "win_loss"
     t.string "description"
     t.string "closed_lost_reason"
     t.string "closed_lost_won_percentage"
     t.float  "final_contract_amount"
-    t.string "margin_close"
+    t.float  "margin_close"
   end
 
   create_table "owners", id: false, force: :cascade do |t|
