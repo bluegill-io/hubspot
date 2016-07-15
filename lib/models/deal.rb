@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 #:nodoc
 class Deal < ActiveRecord::Base
+  after_commit :add_to_master_deal_table
+
   self.primary_key = 'id'
   belongs_to :deal_stage
 
@@ -14,4 +16,9 @@ class Deal < ActiveRecord::Base
   has_many :engagements, through: :engagement_deals
 
   include FormattableDealData
+
+  def add_to_master_deal_table
+    params = MasterTable::DealParams.new(self)
+    MasterDeal.create(params.valid_params)
+  end
 end

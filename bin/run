@@ -17,15 +17,3 @@ rake['db:seed'].invoke
   "Api::#{hub_data}".constantize.new.retreive
   puts "== #{hub_data} Done =="
 end
-
-# create new master tables for OBDC driver access
-# FOR JOSH
-Contact.all.each do |contact|
-  params = MasterTable::ContactParams.new(contact)
-  MasterContact.create(params.valid_params)
-end
-
-Deal.all.each do |deal|
-  params = MasterTable::DealParams.new(deal)
-  MasterDeal.create(params.valid_params)
-end

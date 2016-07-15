@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 #:nodoc
 class Contact < ActiveRecord::Base
+  after_commit :add_to_master_table
+  
   self.primary_key = 'id'
 
   belongs_to :owner
@@ -14,5 +16,10 @@ class Contact < ActiveRecord::Base
 
   def formatted_owner
     owner.full_name if owner
+  end
+
+  def add_to_master_table
+    params = MasterTable::ContactParams.new(self)
+    MasterContact.create(params.valid_params)
   end
 end
