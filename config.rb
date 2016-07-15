@@ -10,6 +10,7 @@ require 'active_record'
 require 'yaml'
 require 'rake'
 Dotenv.load
+ActiveRecord::Base.raise_in_transactional_callbacks = true
 
 # API
 require './lib/api/base.rb'

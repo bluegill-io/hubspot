@@ -16,8 +16,8 @@ module MasterTable
       new_params[:owner] = contact.formatted_owner
 
       # associations
-      new_params[:engagements] = associated(:engagements, :body) if contact.engagements.present?
-      new_params[:deals] = associated(:deals, :deal_name) if contact.deals.present?
+      new_params[:engagements] = contact.engagements.present? ? associated(:engagements, :body) : nil
+      new_params[:deals] = contact.deals.present? ? associated(:deals, :deal_name) : nil
       new_params
     end
 

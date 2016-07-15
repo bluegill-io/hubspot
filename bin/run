@@ -11,9 +11,11 @@ rake['db:create'].invoke
 rake['db:migrate'].invoke
 rake['db:seed'].invoke
 
-# TODO: update this to allow for passing of
-# options on run
-%w(Companies Contacts Deals Engagements Owners).each do |hub_data|
+# TODO: update this to allow for passing of options on run
+
+## THIS ORDER IS IMPORTANT FOR 
+## ASSOCIATIONS AND MASTER TABLE CREATIONS
+%w(Companies Engagements Owners Deals Contacts).each do |hub_data|
   "Api::#{hub_data}".constantize.new.retreive
   puts "== #{hub_data} Done =="
 end
