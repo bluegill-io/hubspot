@@ -7,8 +7,8 @@ class CreateMasterDeal < ActiveRecord::Migration
       t.string :project_year
       t.string :project_start_date
       t.string :project_end_date
-      t.string :rooms
-      t.string :floors
+      t.integer :rooms
+      t.integer :floors
       t.string :project_manager
       t.string :project_superintendent
       t.string :bid_type

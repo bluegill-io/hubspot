@@ -3,7 +3,7 @@ module FormattableDealData
   extend ActiveSupport::Concern
 
   def formatted_close_date
-    DateTime.strptime(close_date, '%Q').strftime('%m/%d/%Y') if close_date.present?
+    format_date(close_date) if close_date.present?
   end
 
   def formatted_project_start_date
@@ -15,7 +15,7 @@ module FormattableDealData
   end
 
   def human_deal_stage
-    deal_stage.human_readable
+    deal_stage.human_readable if deal_stage
   end
 
   def formatted_floors
@@ -47,7 +47,6 @@ module FormattableDealData
   private
 
   def format_date(d)
-    date_format = d.split('/').last.length == 4 ? '%m/%d/%Y' : '%m/%d/%y'
-    DateTime.strptime(d, date_format).strftime('%m/%d/%Y')
+    DateTime.strptime(d, '%Q').strftime('%m/%d/%Y')
   end
 end
