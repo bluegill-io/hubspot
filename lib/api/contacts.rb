@@ -29,7 +29,8 @@ module Api
       '&property=vid&property=firstname&property=lastname&'\
       'property=email&property=phone&property=mobilephone&'\
       'property=hubspot_owner_id&property=industry&'\
-      'property=company&property=jobtitle'
+      'property=company&property=jobtitle&property=contact_status&'\
+      'property=contact_type'
     end
 
     def format_params
@@ -43,7 +44,9 @@ module Api
         owner_id: :'properties.hubspot_owner_id.value',
         industry: :'properties.industry.value',
         company: :'properties.company.value',
-        job_title: :'properties.jobtitle.value'
+        job_title: :'properties.jobtitle.value',
+        contact_type: :'properties.contact_type.value',
+        contact_status: :'properties.contact_status.value'
       }
     end
   end

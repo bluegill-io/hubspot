@@ -21,6 +21,13 @@ class CreateMasterDeal < ActiveRecord::Migration
       t.string :closed_lost_won_percentage
       t.float :final_contract_amount
       t.float :margin_close
+      t.string :property_address
+      t.string :property_state
+      t.string :property_zip
+      t.string :renovation_type
+      t.string :brand
+      t.string :schedule_logistics
+      t.string :bid_team
     end
   end
 end

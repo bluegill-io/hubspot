@@ -25,6 +25,13 @@ class CreateDeals < ActiveRecord::Migration
       t.string :closed_lost_won_percentage
       t.string :final_contract_amount
       t.string :margin_close
+      t.string :property_address
+      t.string :property_state
+      t.string :property_zip
+      t.string :renovation_type
+      t.string :brand
+      t.string :schedule_logistics
+      t.string :bid_team
 
       t.timestamps null: false
     end

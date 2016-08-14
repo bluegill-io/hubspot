@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160713224700) do
   add_index "company_engagements", ["engagement_id"], name: "index_company_engagements_on_engagement_id", using: :btree
 
   create_table "contacts", id: false, force: :cascade do |t|
-    t.integer  "id",         null: false
+    t.integer  "id",             null: false
     t.integer  "owner_id"
     t.string   "first"
     t.string   "last"
@@ -59,8 +59,10 @@ ActiveRecord::Schema.define(version: 20160713224700) do
     t.string   "industry"
     t.string   "company"
     t.string   "job_title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "contact_status"
+    t.string   "contact_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "contacts", ["id"], name: "index_contacts_on_id", unique: true, using: :btree
@@ -104,6 +106,13 @@ ActiveRecord::Schema.define(version: 20160713224700) do
     t.string   "closed_lost_won_percentage"
     t.string   "final_contract_amount"
     t.string   "margin_close"
+    t.string   "property_address"
+    t.string   "property_state"
+    t.string   "property_zip"
+    t.string   "renovation_type"
+    t.string   "brand"
+    t.string   "schedule_logistics"
+    t.string   "bid_team"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
@@ -155,8 +164,10 @@ ActiveRecord::Schema.define(version: 20160713224700) do
     t.string   "job_title"
     t.string   "engagements"
     t.string   "deals"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "contact_status"
+    t.string   "contact_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "master_deals", force: :cascade do |t|
@@ -180,6 +191,13 @@ ActiveRecord::Schema.define(version: 20160713224700) do
     t.string  "closed_lost_won_percentage"
     t.float   "final_contract_amount"
     t.float   "margin_close"
+    t.string  "property_address"
+    t.string  "property_state"
+    t.string  "property_zip"
+    t.string  "renovation_type"
+    t.string  "brand"
+    t.string  "schedule_logistics"
+    t.string  "bid_team"
   end
 
   create_table "owners", id: false, force: :cascade do |t|
