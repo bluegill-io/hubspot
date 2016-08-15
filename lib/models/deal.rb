@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 #:nodoc
 class Deal < ActiveRecord::Base
-  after_commit :add_to_master_deal_table
-
   self.primary_key = 'id'
   belongs_to :deal_stage
 

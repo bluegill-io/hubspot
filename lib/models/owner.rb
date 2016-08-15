@@ -6,6 +6,6 @@ class Owner < ActiveRecord::Base
   has_many :contacts
 
   def full_name
-    [first, last].join('')
+    "#{first} #{last}"
   end
 end

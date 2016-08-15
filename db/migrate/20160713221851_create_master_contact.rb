@@ -12,7 +12,7 @@ class CreateMasterContact < ActiveRecord::Migration
       t.string :job_title
       t.string :engagements
       t.string :deals
-      t.string :contact_status
+      t.string :status
       t.string :contact_type
 
       t.timestamps null: false

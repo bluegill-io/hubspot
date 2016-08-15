@@ -33,11 +33,16 @@ module Api
         valid_params = build_hash(format_params, formatted)
         ar_record = activerecord_model.find_or_create_by(valid_params)
         process_joins(ar_record.id, formatted) if needs_joins
+        create_master_table(ar_record)
       end
 
       # check response to see if we need to loop for offset
       # currently being used for Deals and Contacts
       rerun(response) if check_offset(response)
+    end
+
+    def create_master_table(instance)
+      true
     end
 
     private

@@ -13,7 +13,7 @@ module MasterTable
     private
 
     def set_params
-      new_params = deal.as_json(except: [:id, :deal_stage_id, :created_at, :updated_at])
+      new_params = deal.as_json(except: [:id, :deal_stage_id, :created_at, :updated_at, :hubspot_owner_id])
       new_params.merge!(
         close_date: deal.formatted_close_date,
         margin_bid: deal.formatted_margin_bid,
@@ -24,7 +24,10 @@ module MasterTable
         rooms: deal.formatted_rooms,
         deal_stage: deal.human_deal_stage,
         amount: deal.formatted_amount,
-        final_contract_amount: deal.formatted_contract_amount
+        final_contract_amount: deal.formatted_contract_amount,
+        owner: deal.formatted_owner,
+        companies: deal.formatted_companies,
+        contacts: deal.formatted_contacts
       )
       new_params
     end

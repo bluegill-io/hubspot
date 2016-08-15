@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160713224700) do
   add_index "company_engagements", ["engagement_id"], name: "index_company_engagements_on_engagement_id", using: :btree
 
   create_table "contacts", id: false, force: :cascade do |t|
-    t.integer  "id",             null: false
+    t.integer  "id",           null: false
     t.integer  "owner_id"
     t.string   "first"
     t.string   "last"
@@ -59,10 +59,10 @@ ActiveRecord::Schema.define(version: 20160713224700) do
     t.string   "industry"
     t.string   "company"
     t.string   "job_title"
-    t.string   "contact_status"
+    t.string   "status"
     t.string   "contact_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "contacts", ["id"], name: "index_contacts_on_id", unique: true, using: :btree
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20160713224700) do
   create_table "deals", id: false, force: :cascade do |t|
     t.integer  "id",                         null: false
     t.uuid     "deal_stage_id"
+    t.string   "hubspot_owner_id"
     t.string   "deal_name"
     t.string   "close_date"
     t.string   "project_year"
@@ -164,10 +165,10 @@ ActiveRecord::Schema.define(version: 20160713224700) do
     t.string   "job_title"
     t.string   "engagements"
     t.string   "deals"
-    t.string   "contact_status"
+    t.string   "status"
     t.string   "contact_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "master_deals", force: :cascade do |t|
@@ -198,6 +199,9 @@ ActiveRecord::Schema.define(version: 20160713224700) do
     t.string  "brand"
     t.string  "schedule_logistics"
     t.string  "bid_team"
+    t.string  "owner"
+    t.string  "companies",                  default: [], array: true
+    t.string  "contacts",                   default: [], array: true
   end
 
   create_table "owners", id: false, force: :cascade do |t|

@@ -46,8 +46,12 @@ module Api
         company: :'properties.company.value',
         job_title: :'properties.jobtitle.value',
         contact_type: :'properties.contact_type.value',
-        contact_status: :'properties.contact_status.value'
+        status: :'properties.contact_status.value'
       }
+    end
+
+    def create_master_table(instance)
+      instance.add_to_master_table
     end
   end
 end

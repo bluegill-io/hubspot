@@ -12,7 +12,7 @@ class CreateContacts < ActiveRecord::Migration
       t.string :industry
       t.string :company
       t.string :job_title
-      t.string :contact_status
+      t.string :status
       t.string :contact_type
 
       t.timestamps null: false

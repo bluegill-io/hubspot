@@ -48,6 +48,10 @@ module Api
       end
     end
 
+    def create_master_table(instance)
+      instance.add_to_master_deal_table
+    end
+
     private
 
     def additional_deal_params

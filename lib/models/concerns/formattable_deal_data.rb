@@ -44,6 +44,18 @@ module FormattableDealData
     final_contract_amount.to_f
   end
 
+  def formatted_owner
+    Owner.find(hubspot_owner_id.to_i).full_name if hubspot_owner_id.present?
+  end
+
+  def formatted_contacts
+    contacts.map(&:full_name) if contacts.present?
+  end
+
+  def formatted_companies
+    companies.map(&:name) if companies.present?
+  end
+
   private
 
   def format_date(d)
