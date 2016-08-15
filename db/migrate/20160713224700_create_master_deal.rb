@@ -29,8 +29,8 @@ class CreateMasterDeal < ActiveRecord::Migration
       t.string :schedule_logistics
       t.string :bid_team
       t.string :owner
-      t.string :companies, array: true, default: []
-      t.string :contacts, array: true, default: []
+      t.string :companies
+      t.string :contacts
     end
   end
 end

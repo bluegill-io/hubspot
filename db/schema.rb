@@ -200,8 +200,8 @@ ActiveRecord::Schema.define(version: 20160713224700) do
     t.string  "schedule_logistics"
     t.string  "bid_team"
     t.string  "owner"
-    t.string  "companies",                  default: [], array: true
-    t.string  "contacts",                   default: [], array: true
+    t.string  "companies"
+    t.string  "contacts"
   end
 
   create_table "owners", id: false, force: :cascade do |t|

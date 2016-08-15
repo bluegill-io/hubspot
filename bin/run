@@ -15,7 +15,7 @@ rake['db:seed'].invoke
 
 ## THIS ORDER IS IMPORTANT FOR
 ## ASSOCIATIONS AND MASTER TABLE CREATIONS
-%w(Companies Engagements Owners Deals Contacts).each do |hub_data|
+%w(Companies Engagements Owners Contacts Deals).each do |hub_data|
   "Api::#{hub_data}".constantize.new.retreive
   puts "== #{hub_data} Done =="
 end

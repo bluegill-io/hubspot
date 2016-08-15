@@ -49,11 +49,11 @@ module FormattableDealData
   end
 
   def formatted_contacts
-    contacts.map(&:full_name) if contacts.present?
+    "#{[contacts.map(&:full_name)].join(', ')}" if contacts.present?
   end
 
   def formatted_companies
-    companies.map(&:name) if companies.present?
+    "#{[companies.map(&:name)].join(', ')}" if companies.present?
   end
 
   private
