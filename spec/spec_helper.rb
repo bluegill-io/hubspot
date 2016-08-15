@@ -13,6 +13,7 @@ ENV['API_KEY'] = 'test'
 require_relative '../config.rb'
 require 'factory_girl'
 require 'database_cleaner'
+require 'shoulda-matchers'
 
 ActiveRecord::Base.logger = nil
 ActiveRecord::Base.establish_connection(adapter:  'postgresql',
@@ -24,6 +25,14 @@ ActiveRecord::Base.connection.drop_database 'hubspot_test_db'
 ActiveRecord::Base.connection.create_database 'hubspot_test_db'
 ActiveRecord::Schema.verbose = false
 load('db/schema.rb')
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :active_record
+  end
+end
+
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
